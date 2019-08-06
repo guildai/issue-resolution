@@ -1,0 +1,26 @@
+#!/bin/bash
+
+ROOT=/tmp/guild-issue-39
+
+if [ -e $ROOT ]; then
+    echo "$ROOT already exists - refusing to init"
+    echo "Delete it first and re-run this script."
+    exit 1
+fi
+
+mkdir -p $ROOT
+
+mkdir $ROOT/DRL
+touch $ROOT/DRL/hello.py
+touch $ROOT/DRL/hello.bin
+
+mkdir -p $ROOT/domains/gym_taxi
+touch $ROOT/domains/gym_taxi/hello.py
+touch $ROOT/domains/gym_taxi/hello.bin
+
+mkdir -p $ROOT/symbolic-goal-generation/planning/taxi
+touch $ROOT/symbolic-goal-generation/hello.py
+touch $ROOT/symbolic-goal-generation/guild.yml
+touch $ROOT/symbolic-goal-generation/planning/taxi/hello.pddl
+
+find $ROOT

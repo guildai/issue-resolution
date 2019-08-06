@@ -1,0 +1,25 @@
+- model: ikostrikov
+  operations:
+    from-issue:
+      main: guild.pass
+      sourcecode:
+        root: '/tmp/guild-issue-39'
+        select:
+          - exclude: '*'
+          - include: '/tmp/guild-issue-39/DRL/*.py'
+          - include: 'domains/gym_taxi/*.py'
+          - include: 'symbolic-goal-generation/*.py'
+          - include: 'symbolic-goal-generation/planning/taxi/*.pddl'
+          - include: symbolic-goal-generation/guild.yml
+
+    relative-paths:
+      main: guild.pass
+      sourcecode:
+        root: '/tmp/guild-issue-39'
+        select:
+          - exclude: '*'
+          - include: 'DRL/*.py'
+          - include: 'domains/gym_taxi/*.py'
+          - include: 'symbolic-goal-generation/*.py'
+          - include: 'symbolic-goal-generation/planning/taxi/*.pddl'
+          - include: symbolic-goal-generation/guild.yml
