@@ -37,7 +37,7 @@ started: 2019-08-06 12:58:52
 stopped: 2019-08-06 12:58:53
 marked: no
 label:
-sourcecode: 991c3ccfd295262492467d81d01e8a17
+sourcecode_digest: 991c3ccfd295262492467d81d01e8a17
 run_dir: ~/.guild/runs/e1e9e079824243ef8e2f134ea05491c2
 command: /usr/bin/python -um guild.op_main guild.pass --
 exit_status: 0
@@ -99,6 +99,22 @@ disable the behavior.
 
 Digests must be either generated on the full set of source code files
 or not at all, in which case the digest value is empty/null.
+
+## Implementation
+
+Available in 0.6.6.dev3
+
+https://github.com/guildai/guildai/commit/420bb4306a06bed215eca5a9cf80b2eca5ac3c56
+
+The function is implemented as outlined above.
+
+Digests can be disabled this way:
+
+```
+operation:
+  sourcecode:
+    digest: off
+```
 
 ## Related Issues
 
