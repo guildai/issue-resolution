@@ -37,13 +37,11 @@ operator-range : operator range
 
 operator : BEFORE | AFTER
 
-datetime : date
-         | TIME
-         | date TIME
+datetime : date | time | date time
 
-date : SHORTDATE
-     | MEDIUMDATE
-     | LONGDATE
+date : SHORTDATE | MEDIUMDATE | LONGDATE
+
+time : SHORTTIME | LONGTIME
 
 last-unit : LAST delta-unit
           | LAST NUMBER delta-unit
