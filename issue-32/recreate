@@ -1,0 +1,16 @@
+#!/bin/sh
+
+export GUILD_HOME=/tmp/guild-issue-32
+
+guild run train.py x=[1.0,2.0,3.0] -y
+
+cat <<EOF
+
+Viewing runs in TensorBoard - values for x_scalar should NOT be
+duplicated.
+
+Press Ctrl-C to quit
+EOF
+
+sleep 2
+guild tensorboard 2> /dev/null  # TB is noisy lately
