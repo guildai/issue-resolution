@@ -1,48 +1,68 @@
-#!/bin/sh
+#!/bin/bash
 
 set -eu
 
 BASE=/tmp/guild-issue-35
+SYS1=$BASE/sys1
+SYS2=$BASE/sys2
 
 if [ -e $BASE ]; then
     echo "$BASE exists - delete it first and rerun this script"
 fi
 
-mkdir $BASE
+cat <<EOF
 
-# Dirs for each system Guild home and project
+This script recreates Issue 35 by simulating two systems and an export
+of runs from one of the systems to another. After runs are moved, the
+original project file is deleted to break any references in the
+exported runs to the project.
 
-SYS1=$BASE/sys1
-SYS2=$BASE/sys2
+This issue can be recreated with 0.6.5 and has been resolved in 0.6.6.
 
-mkdir -p $SYS1/guild-home
-mkdir -p $SYS1/project
-cp guild.yml $SYS1/project/
+EOF
 
-mkdir -p $SYS2/guild-home
-mkdir -p $SYS2/project
-cp guild.yml $SYS2/project/
+init-dirs() {
+    mkdir -p $BASE
+    mkdir -p $SYS1/guild-home
+    mkdir -p $SYS1/project
+    mkdir -p $SYS2/guild-home
+    mkdir -p $SYS2/project
+    mkdir -p $BASE/export-import
+}
 
-# Dir for export/import
+init-project() {
+    cp guild.yml $SYS1/project/
+}
 
-mkdir -p $BASE/export-import
+generate-run() {
+    printf "==> Generating run on system 1\n\n"
+    guild -H $SYS1/guild-home -C $SYS1/project run op -y
+}
 
-# Generate a run on system 1
+export-run() {
+    printf "==> Exporting run on system 1\n\n"
+    guild -H $SYS1/guild-home export $BASE/export-import -y
+}
 
-guild -H $SYS1/guild-home -C $SYS1/project run op -y
+import-run() {
+    printf "\n==> Importing run on system 2\n\n"
+    guild -H $SYS2/guild-home import $BASE/export-import -y
+}
 
-# Export runs from system 1
+delete-project() {
+    printf "\n==> Deleting project on system 1 (breaks project ref)\n\n"
+    rm $SYS1/project/guild.yml
+}
 
-guild -H $SYS1/guild-home export $BASE/export-import -y
+compare-runs() {
+    printf "==> Comparing runs on system 2\n\n"
+    guild -H $SYS2/guild-home compare --table
+}
 
-# Import runs to system 2
-
-guild -H $SYS2/guild-home import $BASE/export-import -y
-
-# Delete system 1 project - hard-coded references to it are broken
-
-rm $SYS1/project/guild.yml
-
-# List runs on system 2
-
-guild -H $SYS2/guild-home compare --table
+init-dirs
+init-project
+generate-run
+export-run
+import-run
+delete-project
+compare-runs
