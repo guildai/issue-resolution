@@ -1,0 +1,4 @@
+train:
+  main: guild.pass
+  flags:
+    problem_train_size: null
