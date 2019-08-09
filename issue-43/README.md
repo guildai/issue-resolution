@@ -88,6 +88,17 @@ Explicit after:
     after 2018-5-12
     after 5-12 10:00
 
+Over last period:
+
+    last hour
+    last 5 days
+    last 10 minutes
+
+Note there is an important distinction between `last ...` and `after
+... ago` forms. For details, see [Comparing after and last
+forms](https://github.com/guildai/guildai/blob/master/guild/tests/timerange.md#comparing-after-and-last-forms)
+in the Guild tests.
+
 Explicit range:
 
     between 5-12 and now
