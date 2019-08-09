@@ -1,0 +1,48 @@
+#!/bin/sh
+
+set -eu
+
+BASE=/tmp/guild-issue-35
+
+if [ -e $BASE ]; then
+    echo "$BASE exists - delete it first and rerun this script"
+fi
+
+mkdir $BASE
+
+# Dirs for each system Guild home and project
+
+SYS1=$BASE/sys1
+SYS2=$BASE/sys2
+
+mkdir -p $SYS1/guild-home
+mkdir -p $SYS1/project
+cp guild.yml $SYS1/project/
+
+mkdir -p $SYS2/guild-home
+mkdir -p $SYS2/project
+cp guild.yml $SYS2/project/
+
+# Dir for export/import
+
+mkdir -p $BASE/export-import
+
+# Generate a run on system 1
+
+guild -H $SYS1/guild-home -C $SYS1/project run op -y
+
+# Export runs from system 1
+
+guild -H $SYS1/guild-home export $BASE/export-import -y
+
+# Import runs to system 2
+
+guild -H $SYS2/guild-home import $BASE/export-import -y
+
+# Delete system 1 project - hard-coded references to it are broken
+
+rm $SYS1/project/guild.yml
+
+# List runs on system 2
+
+guild -H $SYS2/guild-home compare --table
