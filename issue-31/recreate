@@ -1,0 +1,24 @@
+#!/bin/bash
+
+cat <<EOF
+
+The config from the issue is missing a space in '-import'. As of
+0.6.5, Guild no longer loads this file:
+
+$(sed 's/^/  /' bad-spec/guild.yml)
+
+EOF
+
+guild -C bad-spec run train
+
+cat <<EOF
+
+When fixed, Guild loads the file:
+
+$(sed 's/^/  /' guild.yml)
+
+The preview looks like this:
+
+EOF
+
+(guild run train & ) && p=$$ && sleep 1 && kill $p

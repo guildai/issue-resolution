@@ -1,0 +1,6 @@
+- model: argstest
+  operations:
+    train:
+      main: guild_flag_test
+      flags-import:
+        -import
