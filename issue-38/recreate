@@ -1,0 +1,13 @@
+#!/bin/sh
+
+export GUILD_HOME=/tmp/guild-issue-38
+
+guild run train.py -y
+guild run train.py -y replay-buffer-size="'1000'"
+guild run train.py -y replay-buffer-size="'2000'"
+guild run train.py -y replay-buffer-size=[1,"2",'3',"'4'",'"5"']
+
+guild runs
+
+echo "Viewing runs in TensorBoard - press Ctrl-C to exit"
+guild tensorboard 2> /dev/null  # Skip TB noise
