@@ -4,6 +4,9 @@ https://github.com/guildai/guildai/issues/39
 
 ## Recreating issue
 
+The steps below demonstrate correct functionality as of
+`0.6.6.dev2`. Earlier versions may report different results.
+
 Requirements:
 
 - guildai>=0.6.6.dev2
