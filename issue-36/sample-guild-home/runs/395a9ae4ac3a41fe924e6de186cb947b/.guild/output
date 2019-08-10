@@ -1,0 +1,8 @@
+INFO: [guild] Initialized trial 466cab10 (id=1, wait=2)
+INFO: [guild] Running trial 466cab10: op.py (id=1, wait=2)
+Starting 1 at 1565394895.3
+Stopping 1 at 1565394897.3
+INFO: [guild] Initialized trial c74d9996 (id=2, wait=2)
+INFO: [guild] Running trial c74d9996: op.py (id=2, wait=2)
+Starting 2 at 1565394897.9
+Operation interrupted - waiting for process to exit

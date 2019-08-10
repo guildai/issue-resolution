@@ -1,0 +1,5 @@
+default-max-trials: 20
+description: Default batch processor.
+exec: ${python_exe} -um guild.batch_main
+flag-encoder: null
+flags: {}

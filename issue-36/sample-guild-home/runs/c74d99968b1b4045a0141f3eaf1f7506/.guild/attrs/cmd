@@ -1,0 +1,8 @@
+- /usr/bin/python
+- -um
+- guild.op_main
+- op
+- --id
+- '2'
+- --wait
+- '2'

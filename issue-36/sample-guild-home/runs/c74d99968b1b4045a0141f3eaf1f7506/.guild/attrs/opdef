@@ -1,0 +1,10 @@
+disable-plugins: all
+exec: ${python_exe} -um guild.op_main op ${flag_args}
+flags:
+  id:
+    default: 1
+  wait:
+    default: 2
+flags-dest: globals
+objective: loss
+output-scalars: null
