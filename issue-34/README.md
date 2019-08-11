@@ -153,3 +153,8 @@ The new scheme for showing operations is implemented in 0.6.6.
 Refer to
 [guild/tests/op-desc.md](https://github.com/guildai/guildai/blob/master/guild/tests/op-desc.md)
 for test coverage with examples.
+
+## Related topics
+
+- [Operations Description tests](https://github.com/guildai/guildai/blob/master/guild/tests/op-desc.md)
+- [Shorten dirs tests](https://github.com/guildai/guildai/blob/master/guild/tests/utils.md#shorten-dirs)
