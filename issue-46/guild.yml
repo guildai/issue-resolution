@@ -1,0 +1,16 @@
+- model: topic_model
+  description: Simple topic modeling
+  sourcecode:
+    - exclude: 'data/*'        # Exclude everything under data from source
+                               # code copy
+  operations:
+    experiment:
+      main: experiment         # Default is 'experiment' based on op name
+                               # but it's good practice to spell it out
+      requires:
+        - file: data           # Creates a link to 'data' directory
+    experiment-2:
+      main: experiment
+      requires:
+        - file: data/file.csv  # Creates a link to 'file.csv' file
+          path: data           # Path in run dir to store all links in
