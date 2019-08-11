@@ -1,16 +1,73 @@
 - model: topic_model
   description: Simple topic modeling
   sourcecode:
-    - exclude: 'data/*'        # Exclude everything under data from source
-                               # code copy
+
+    # Source code config at the model level applies to all
+    # operation. In this case we want to copy all of the text files
+    # (the default configuration) but exclude everything under 'data'.
+
+    - exclude: 'data/*'
+
   operations:
     experiment:
-      main: experiment         # Default is 'experiment' based on op name
-                               # but it's good practice to spell it out
+
+      # The default 'main' attribute is 'experiment' based on the
+      # operation name. While we could omit this below, it's good
+      # practice to specify it explicitly.
+
+      main: experiment
+
+      # In this configuration, we require the project 'data'
+      # directory. Guild creates a symbolic link named 'data' to
+      # this directory in each run directory for the operation.
+
       requires:
-        - file: data           # Creates a link to 'data' directory
+        - file: data
+
     experiment-2:
       main: experiment
+
+      # This is an alternative configuration that accomplishes the
+      # same thing using a different directory structure. First, the
+      # file 'data/file.csv' is selected. Without any additional
+      # configuration, Guild creates a link named 'file.csv' in the
+      # run directory.
+      #
+      # However, we also define a 'path' attribute. This tells Guild
+      # where links are created for each file. In this case, the link
+      # 'file.csv' is created in a subdirectory named 'data.
+      #
+      # Note that this accomplishes the same thing as the previous
+      # example, but because the link is to 'file.csv', any other
+      # files in the 'data' director would *not* be available to the
+      # run.
+
       requires:
-        - file: data/file.csv  # Creates a link to 'file.csv' file
-          path: data           # Path in run dir to store all links in
+        - file: data/file.csv
+          path: data
+
+    experiment-3:
+      main: experiment
+
+      # In this configuration, we refer to a name resource, which is
+      # defined under a 'resources' model attribute. Use named
+      # resources when a resource definition is used by more than one
+      # operation - or to improve the readability of a requires spec.
+
+      requires: data
+
+  resources:
+    data:
+
+      # Named resource can be referenced in any operation 'requires'
+      # attribute. Here we use the same spec as the requirement for
+      # the 'experiment' operation. This resource is required by
+      # 'experiment-3' as an example.
+      #
+      # Note that as of Guild 0.6.5, named resource sources must be
+      # defined under the 'sources' attribute. This requirement will
+      # be relaxed in a future release to mirror the structure
+      # supported by inline resources.
+
+      sources:
+        - file: data

@@ -35,7 +35,7 @@ the `-L, --follow-links` option:
       data/
       data/file.csv
 
-### Alternative configuration
+### Alternative configuration - using `path`
 
 The operation `experiment-2` requires `data/file.csv` and links to it
 under the `data` path within the run directory. This has a similar
@@ -47,7 +47,7 @@ Run the alternative operation:
 
     $ guild run experiment-2 -y
     Resolving file:data/file.csv dependency
-    Contents of /home/garrett/.guild/runs/e1cace83ee8243ae8e5b444f64c855df/data
+    Contents of ~/.guild/runs/e1cace83ee8243ae8e5b444f64c855df/data
     file.csv
 
 List the files for the run:
@@ -60,6 +60,53 @@ List the files for the run:
 Note that `file.csv` is displayed because `data` is *not* a link -
 it's a directory that Guild creates according to the resource `path`
 attribute.
+
+### Alternative configuration - using named resources
+
+`experiment` and `experiment-2` both use inlined resource definitions
+under `requires`. You can alternatively use a *named resource* as is
+shown in `experiment-3`.
+
+Run `experiment-3`:
+
+    $ guild run experiment-3 -y
+    Resolving data dependency
+    Contents of ~/.guild/runs/3ea673ed6b454e1a8b771e6b8867ab99/data
+    file.csv
+
+List the run files:
+
+    $ guild runs ls
+    ~/.guild/runs/3ea673ed6b454e1a8b771e6b8867ab99:
+      data/
+
+Note that this configuration links to `data` and so does not show
+`file.csv` by default.
+
+List the run files following links:
+
+    $ guild runs ls -L
+    ~/.guild/runs/3ea673ed6b454e1a8b771e6b8867ab99:
+      data/
+      data/file.csv
+
+### Staging runs
+
+It's important to generate the correct run directory layout. Guild
+lets you create a staged run without running the operation. This is
+helpful for verifying run directory layout and debugging issues.
+
+Use the `--stage` option with the `run` command:
+
+    $ guild run experiment --stage /tmp/guild-issue-46-stage -y
+    Resolving file:data dependency
+    Operation is staged in /tmp/guild-issue-46-stage
+    To run the operation, use: (cd /tmp/guild-issue-46-stage && source
+    .guild/env && /usr/bin/python -um guild.op_main experiment --
+    --DATA_DIR data)
+
+You can inspect the directory `/tmp/guild-issue-46-stage` and fix any
+issue before running the operation.
 
 ### List source code files
 
@@ -82,8 +129,25 @@ specs as `include` directives.
 level, or both. If defined at both levels, the operation config
 extends the model config.
 
+Use the `--test-sourcecode` option to the `run` command to check which
+files Guild will copy based on the source code configuration for the
+applicable operation.
+
+    $ guild run experiment --test-sourcecode
+    Copying from the current directory
+    Selected for copy:
+      ./README.md
+      ./experiment.py
+      ./guild.yml
+    Skipped:
+      ./data/file.csv
+
 ## Related topics
 
 - The [Guild copy source test
   project](https://github.com/guildai/guildai/blob/master/guild/tests/samples/projects/copy-sourcecode/guild.yml)
   contains an extensive list of configuration examples.
+
+- The [Guild copy source test
+  script](https://github.com/guildai/guildai/blob/master/guild/tests/copy-sourcecode.md)
+  contains annotated tests that run the test project examples.
