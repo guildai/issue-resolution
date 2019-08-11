@@ -61,7 +61,7 @@ Note that `file.csv` is displayed because `data` is *not* a link -
 it's a directory that Guild creates according to the resource `path`
 attribute.
 
-### Alternative configuration - using named resources
+### Alternative configuration - named resources
 
 `experiment` and `experiment-2` both use inlined resource definitions
 under `requires`. You can alternatively use a *named resource* as is
@@ -92,9 +92,9 @@ List the run files following links:
 
 ### Staging runs
 
-It's important to generate the correct run directory layout. Guild
-lets you create a staged run without running the operation. This is
-helpful for verifying run directory layout and debugging issues.
+It's important to generate a correct run directory layout. Guild lets
+you create a staged run without running the operation. This is helpful
+for verifying run directory layout and debugging issues.
 
 Use the `--stage` option with the `run` command:
 
@@ -121,17 +121,27 @@ option with `ls`:
 
 The model `topic_model` excludes everything in the `data`
 directory. All other text files are copied as source code. To exclude
-additional files or paths, add them to the `sourcecode` list using the
-same `exclude` directives. To include binaries, add the applicable
-specs as `include` directives.
+additional files or paths, add them as `exclude` patterns to list of
+directives under `sourcecode`. To include binaries, add the applicable
+patterns as `include` directives.
+
+For example, if the project contained an image `cat.png` it would
+*not* be copied as source code because it is a binary file. To include
+it as source code, use this configuration:
+
+```
+- model: topic_model
+  sourcecode:
+    - exclude: 'data/*'
+    - include: cat.png
+```
 
 `sourcecode` config can be defined at the model level, operation
 level, or both. If defined at both levels, the operation config
 extends the model config.
 
-Use the `--test-sourcecode` option to the `run` command to check which
-files Guild will copy based on the source code configuration for the
-applicable operation.
+Use the `--test-sourcecode` option to the `run` command to show which
+files Guild copies based on the operation's source code configuration.
 
     $ guild run experiment --test-sourcecode
     Copying from the current directory

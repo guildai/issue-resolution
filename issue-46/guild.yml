@@ -3,7 +3,7 @@
   sourcecode:
 
     # Source code config at the model level applies to all
-    # operation. In this case we want to copy all of the text files
+    # operations. In this case we want to copy all of the text files
     # (the default configuration) but exclude everything under 'data'.
 
     - exclude: 'data/*'
@@ -13,7 +13,7 @@
 
       # The default 'main' attribute is 'experiment' based on the
       # operation name. While we could omit this below, it's good
-      # practice to specify it explicitly.
+      # practice to specify it.
 
       main: experiment
 
@@ -34,13 +34,14 @@
       # run directory.
       #
       # However, we also define a 'path' attribute. This tells Guild
-      # where links are created for each file. In this case, the link
-      # 'file.csv' is created in a subdirectory named 'data.
+      # where links are created within a run directory. In this case,
+      # the link 'file.csv' is created in a subdirectory named 'data.
       #
       # Note that this accomplishes the same thing as the previous
       # example, but because the link is to 'file.csv', any other
-      # files in the 'data' director would *not* be available to the
-      # run.
+      # files in the 'data' directory would *not* be available to the
+      # run. To make all files under 'data' available, use the
+      # configuration for 'experiment' above.
 
       requires:
         - file: data/file.csv
@@ -49,10 +50,10 @@
     experiment-3:
       main: experiment
 
-      # In this configuration, we refer to a name resource, which is
-      # defined under a 'resources' model attribute. Use named
+      # In this configuration, we refer to a named resource, which is
+      # defined under the 'resources' model attribute. Use named
       # resources when a resource definition is used by more than one
-      # operation - or to improve the readability of a requires spec.
+      # operation or to improve the readability of a requires spec.
 
       requires: data
 
@@ -61,13 +62,12 @@
 
       # Named resource can be referenced in any operation 'requires'
       # attribute. Here we use the same spec as the requirement for
-      # the 'experiment' operation. This resource is required by
-      # 'experiment-3' as an example.
+      # the 'experiment' operation.
       #
-      # Note that as of Guild 0.6.5, named resource sources must be
+      # (Note that as of Guild 0.6.5, named resource sources must be
       # defined under the 'sources' attribute. This requirement will
       # be relaxed in a future release to mirror the structure
-      # supported by inline resources.
+      # supported by inline resources.)
 
       sources:
         - file: data
