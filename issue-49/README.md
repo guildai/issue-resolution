@@ -15,7 +15,7 @@ Guild supports mapping of script output to scalar values by way of
 This terminology could be clarified using the term *metric* instead of
 scalar.
 
-## Counter point
+## Counterpoint
 
 There's no evidence yet that *scalar* is confusing anyone.
 
