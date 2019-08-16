@@ -3,7 +3,7 @@
 export GUILD_HOME=/tmp/guild-issue-50
 export NO_IMPORT_FLAGS_PROGRESS=1
 
-xs=(3e563 3e10 "'3e10'" '"3e10"')
+xs=(3e563 "'3e563'" '"3e10"' 3e10 "'3e10'" '"3e10"')
 
 for x in ${xs[@]}; do
     echo -n "$x: "

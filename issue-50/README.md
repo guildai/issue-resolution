@@ -34,9 +34,23 @@ Run:
 Output:
 
     3e563: inf <type 'float'>
+    3e563: inf <type 'float'>
+    3e563: inf <type 'float'>
     3e10: 30000000000.0 <type 'float'>
     '3e10': 30000000000.0 <type 'float'>
     "3e10": 30000000000.0 <type 'float'>
 
 Note even in the case where a string is explicitly used (last two
 cases) Guild converts the value to a float.
+
+## Fix
+
+This is fixed in 0.6.6. The new behavior is:
+
+    $ ./recreate
+    3e563: inf <type 'float'>
+    '3e563': '3e563' <type 'str'>
+    "3e10": '3e10' <type 'str'>
+    3e10: 30000000000.0 <type 'float'>
+    '3e10': '3e10' <type 'str'>
+    "3e10": '3e10' <type 'str'>
