@@ -45,7 +45,8 @@ cases) Guild converts the value to a float.
 
 ## Fix
 
-This is fixed in 0.6.6. The new behavior is:
+This is fixed in 0.6.6 (available in pre-release 0.6.6.dev6). The new
+behavior is:
 
     $ ./recreate
     3e563: inf <type 'float'>
@@ -54,3 +55,6 @@ This is fixed in 0.6.6. The new behavior is:
     3e10: 30000000000.0 <type 'float'>
     '3e10': '3e10' <type 'str'>
     "3e10": '3e10' <type 'str'>
+
+Note that the hash values that can be converted to floats must be
+quoted to clarify that they are strings.
