@@ -1,4 +1,4 @@
-# https://github.com/guildai/guildai/issues/55
+# Guild overrides log settings configured via basicConfig
 
 https://github.com/guildai/guildai/issues/55
 
