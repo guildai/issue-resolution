@@ -1,0 +1,9 @@
+test:
+  main: test --log-file test.log
+  flags-import: no
+
+test2:
+  main: test --log-file test.log
+  flags-import: no
+  env:
+    LOG_FORMAT: '%(name)s - %(levelname)s - %(message)s'
