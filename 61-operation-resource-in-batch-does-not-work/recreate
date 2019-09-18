@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+echo "Running train v1"
+guild run train -l v1 -y
+
+echo "Running train v2"
+guild run train -l v2 -y
+
+train_id=`guild runs info 2 | head -n1 | cut -d' ' -f2`
+
+echo "Running retrain using train v2 ($train_id)"
+guild run retrain x=[1] model=$train_id -y
+
+guild runs | head -n4

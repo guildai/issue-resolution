@@ -1,0 +1,8 @@
+train: {}
+
+retrain:
+  requires:
+    - operation: train
+      select: train_id
+      name: model
+  label: x=${x|default:undefined} model=${model}
