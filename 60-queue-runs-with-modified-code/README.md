@@ -38,11 +38,15 @@ Guild would be changed as follows:
 With this facility, a use can run a `queue` operation in one console
 session and either run or stage runs in another console.
 
-Console #1:
+In console #1 - start a `queue` run:
 
     $ guild run queue
 
-Console #2:
+This is a run like any other. When running, it checks for staged
+operations and runs them in FIFO order. It continues running until
+stopped.
+
+In console #2 - stage runs:
 
     $ guild run train x=1 --stage
 
