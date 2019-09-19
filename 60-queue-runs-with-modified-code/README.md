@@ -4,33 +4,72 @@ https://github.com/guildai/guildai/issues/60
 
 ## Problem
 
-There's currently no way to run batches that use different iterations
-of source code.
+As of 0.6.6, Guild does not support scheduling. Users must start runs
+and wait for them to finish before starting others.
 
-Guild supports runs with different flag values. However, it is useful
-to also consider different source code iterations.
+For short-lived runs, this is less problematic. For long runs, it
+forces the user to monitor each run and manually intervene to start
+subsquent runs.
 
-For example, run a "batch" with variations of a model architecture:
+## Approach
 
-- Trial 1: Use 3 hidden layers
-- Trial 2: Perform an experimental data transform on inputs
-- Trial 3: Use an experimental transfer function
-- ...
+Guild can be enhanced to support a simple scheduling scheme that uses
+a polling operation to start staged runs.
 
-## Notes
+Guild would be changed as follows:
 
-From the issue, the use of `--stop-after` probably wants to be
-`--stage` - however, stage puts the run off into an ad hoc
-directory. We'd want to stage as a run - the way remote runs work.
+1. Refactor `--stage` as a flag that tells Guild to stage a new run in
+   the runs directory. The staged run will appear with a `staged`
+   status in the runs list. The previous stage functionality would be
+   implemented by a new option `--stage-dir`.
 
-There some logic in batches that applies here as well.
+2. Add a `--start` option to the `run` command, which can be used to
+   start staged runs.
 
-Assuming the problem definition is on target (might not be), there are
-a couple of tracks that occur to me:
+3. Introduce a new built-in operation `queue` that polls continuously
+   for staged runs. When is sees a staged run, it starts that run,
+   provided there aren't other runs in progress.
 
-1. Parameterize the various code iterations so they can be driven with
-   hyperparameters.
+4. Add a `--restage` flag that can be used to update a run with new
+   flag values, as well as reset its start time and run
+   status. Restaging a run has the side-effect of setting making it
+   next-to-be-run by a queue.
 
-2. If the changes are cumbersome to parameterize, create separate
-   iterations in source and name them as different operations (or
-   models).
+With this facility, a use can run a `queue` operation in one console
+session and either run or stage runs in another console.
+
+Console #1:
+
+    $ guild run queue
+
+Console #2:
+
+    $ guild run train x=1 --stage
+
+    $ guild run train x=2 --stage
+
+The `queue` running in console 1 polls for pending runs. When it sees
+a pending run, it starts it, provided there are no other runs in
+progress.
+
+Staged runs can be deleted or restaged using `--restage` as needed.
+
+As a queue is a normal run, it can be stopped, either by typing
+`Ctrl-c` in the console or using `guild stop`.
+
+Future possible enhancements:
+
+1. The `queue` operation could be enhanced to start only runs matching
+   specified criteria (e.g. label contents, operation names, etc.)
+
+2. Queues could be enhanced to have binning knowledge - i.e. be
+   aware of available resources and use that when determining whether
+   or not staged runs should be started.
+
+4. Queues could run staged operation in the background in support of
+   parallel runs.
+
+## Status
+
+The functionality outlined above is available for experimentation in
+Guild 0.6.7.dev4.
