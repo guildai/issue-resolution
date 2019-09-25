@@ -70,7 +70,7 @@ See [explicit_logging.py](explicit_logging.py) for details.
 
 ## Fix
 
-Fixed in 0.6.7.dev5.
+Fixed in 0.6.7.dev6.
 
 ## Related Issues
 
