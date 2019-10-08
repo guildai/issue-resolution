@@ -1,0 +1,9 @@
+upstream:
+  disable-plugins: all
+  main: guild.pass
+
+downstream:
+  disable-plugins: all
+  main: guild.pass
+  requires:
+    - operation: upstream

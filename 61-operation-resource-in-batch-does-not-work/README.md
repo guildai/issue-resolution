@@ -26,7 +26,7 @@ operation requirement. This does work for batch trials.
 
 ## Fix
 
-Pending
+A fix for this issue is available in 0.6.7.dev4 and later.
 
 ## Other Notes
 
@@ -50,6 +50,8 @@ As it is, the user needs to define `name` explicitly. This isn't
 aweful - and it encourages better naming (e.g. `model`) but it's
 non-obvious and frustrating if you miss that.
 
+UPDATE: This is *not* included in the fix available in 0.6.7.dev4.
+
 ### Default labels missing resource args
 
 Guild should include the resource value in its default label. E.g.
@@ -71,3 +73,6 @@ retrain:
 ```
 
 ^ works!
+
+UPDATE: This is fixed in 0.6.7.dev4. Default labels now include
+resource references.
