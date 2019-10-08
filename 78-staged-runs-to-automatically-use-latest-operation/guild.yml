@@ -1,0 +1,7 @@
+a:
+  main: guild.pass
+
+b:
+  main: guild.pass
+  requires:
+    - operation: a
