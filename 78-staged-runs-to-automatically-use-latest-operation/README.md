@@ -11,7 +11,7 @@ operation requirements.
 
 Requirements:
 
-- 0.6.7.dev8
+- guildai==0.6.7.dev8
 
 To recreate, change to this directory and run:
 
@@ -39,6 +39,12 @@ $ guild run b a=abcd1234 --stage -y
 
 ## Fix
 
-Guild should include status of `staged` when selecting runs for
-required operations for staged runs. Guild should NOT consider staged
-when running directly.
+This issue has been fixed in 0.6.7.dev9.
+
+The following stages a and then b, using the staged a run ID:
+
+```
+$ guild run a --stage --yes
+$ guild run b --stage --yes
+
+```
