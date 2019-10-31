@@ -1,0 +1,3 @@
+op:
+  requires:
+    - file: foo.txt
