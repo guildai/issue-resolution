@@ -2,6 +2,8 @@
 
 https://github.com/guildai/guildai/issues/90
 
+This issue is resolved as of 0.7.0rc3.
+
 ## Problem
 
 Guild init is not behaving the same as pip install when setting up env
@@ -11,7 +13,7 @@ vars. Possibly a PATH issue.
 
 Requirements:
 
-- guildai<=0.7.0rc1
+- guildai<=0.7.0rc2
 - `git` available on PATH
 
 To recreate, change to this directory and run:
@@ -30,4 +32,4 @@ configurable settings (e.g. Python version used for the env).
 
 ## Fix
 
-Pending
+Fixed in 0.7.0rc3
