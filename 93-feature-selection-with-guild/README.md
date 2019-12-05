@@ -1,4 +1,4 @@
-# Feature selection with Guild?
+# Feature selection with Guild
 
 https://github.com/guildai/guildai/issues/93
 
@@ -33,7 +33,7 @@ guild: unsupported flag 'features'
 
 ### Option 1 - Integer Bitmap
 
-Features can be implemented using a bitmap over an integer.
+Features can be implemented using a bitmap encoded as an integer.
 
 Refer to [guild.yml](guild.yml) `bitmap` operation and the
 implementation in [bitmap.py](bitmap.py).
@@ -57,8 +57,8 @@ One could use a label for individual trials:
 $ guild run bitmap features=5 -l "features=f1,f3"
 ```
 
-The advantage of this approach is that it works with random and
-sequential optimizers.
+The advantage of this approach is that it works with distribution
+sytax for random and sequential optimizers.
 
 For random search:
 
@@ -89,7 +89,12 @@ $ guild run encoded features=f1,f3
 The list of permutations can be viewed using ``guild help`` or ``guild
 run encoded --help-op``.
 
-## Approaches
+This approach has the advange of using meaningful values for selected
+features. However, it requires a tedious expansion of the possible
+permutations in the flag `choices` attribute to support any of Guild's
+optimizers.
+
+## Approaches to Fix
 
 Guild does not support list values for single flags. Guild has held
 that any values other than strings, numbers, and booleans must be
@@ -97,10 +102,10 @@ encoded by the user. Furthermore, Guild uses list syntax to imply
 trial values. List syntax cannot therefore be used to convey list
 values without potentially confusing a user.
 
-For example, consider an operation that supports flag having both the
-historical list-as-trial-values and list-as-value meaning. Without
-knowledge of the operation and this nuanced distinction, the following
-command is ambiguous:
+Consider an operation that supports flags having both the historical
+list-as-trial-values and list-as-value meaning. Without knowledge of
+the operation and this nuanced distinction, the following command is
+ambiguous:
 
 ```
 $ guild run features=[f1,f2,f3] learning-rate=[0.01,0.1]
@@ -110,11 +115,12 @@ In practice, this may not be confusing as the meaning of a list could
 be obvious based on the flag. In the above example, the plural
 "features" signals that the value is provided as a list.
 
-An alternative list syntax is challenging in shell environments as
-many possible list start and end tokens have meaning for shell
-commands (e.g. `(..)`, `{..}`, etc.)
+Alternative list syntax is challenging in shell environments as many
+possible list start and end tokens have meaning for shell commands
+(e.g. `(..)`, `{..}`, etc.)
 
-Quoting lists is difficult and error prone.
+Quoting Guild's list syntax in a shell command is difficult and error
+prone.
 
 Omitting start and end tokens is a possibility:
 
@@ -122,8 +128,7 @@ Omitting start and end tokens is a possibility:
 $ guild run features=f1,f2,f3 learning-rate=[0.01,0.1]
 ```
 
-This is arguably also confusing. Why the different syntax? Is the
-first case a list?
+However, this is arguably also confusing.
 
 Using a common list syntax at least resolves the question "what type
 of flag argument is this?" How that argument type is interpreted by
@@ -132,13 +137,16 @@ Guild is a matter of the flag type.
 ### Approach 1 - Support `list` flag type
 
 - New `list` value for flag `type` attribute
-- Conveys value as a list value when using globals interface
-- Conveys value as repeating command line option
-- Optimizers could use this information to generate permutations
+- When using global variable interface, Guild sets value as a list
+- When using command line args interface, Guild supplies repeating
+  command line options (e.g. `--feature f1 --feature f2 --feature f3`)
+- Optimizers use this information to generate permutations
 
 Guild ought to also support a syntax to say "expand to all possible
 values". This syntax might also be used for grid search, which is
 currently something lacking in Guild.
+
+Syntax options below are listed in current order of preference.
 
 Possible syntax for a list value:
 
@@ -147,25 +155,50 @@ Possible syntax for a list value:
 
 Possible syntax for a list with items containing spaces:
 
-- `$ guild run features=[f1,f2 with spaces,f3]`
+- `$ guild run features=[f1,'f2 with spaces',f3]`
 - `$ guild run features=f1,'f2 with spaces',f3`
 
-Possible syntax for "list of all values":
+Possible syntax for "list containing all choices" (would apply to any
+flag type):
 
 - `$ guild run features=[..]`
 - `$ guild run features=..`
 
 Possible syntax for "list of all permutations":
 
-- `$ guild run features=[...]`
-- `$ guild run features=...`
 - `$ guild run features=[..!]`
 - `$ guild run features=..!`
+- `$ guild run features=[...]`
+- `$ guild run features=...`
 
-Regarding expansion syntax, the use of `..` could extend to integer
-types when generating trials over a sequential range:
+## Other Notes
+
+While out of scope for this issue, the use of `..` could extend to
+integer types when generating trials over a sequential range:
 
 - `$ guild run bitmap=[0..7]`
+
+This leaves the question as to interval. With an interval, this could
+be used for floats as well.
+
+- `$ guild run dropout=[0.0..1.0/0.1]`
+
+The dots here conflict with float tokens. This might be better:
+
+- `$ guild run dropout=range[0.0:1.0:0.1]`
+
+This uses Guild's establish function syntax.
+
+With this, the "expand to all choices" syntax might be:
+
+- `$ guild run features=all[]`
+
+And "expand to all perumtations" might be:
+
+- `$ guild run features=permute[]`
+
+Syntax such as `[..]` and `[..!]` might be supported as syntactic
+sugar in these cases.
 
 ## Related Issues
 
