@@ -1,0 +1,52 @@
+naive:
+  description:
+    Naive approach to setting features - fails
+
+    Simply defining a `features` global variable as a list is the most
+    intuitive approach. Guild however doesn not support setting of
+    list values. In fact, the default value of an empty list signals
+    to Guild that the `features` global cannot be a flag and Guild
+    will not auto-import it.
+
+  flags-import:
+    - features  # Guild won't recognize features because
+                # it's default value cannot be set as a flag.
+
+bitmap:
+  description:
+    Use a bitmap as integer to enable features
+
+    This supports individual runs as well as batch operations.
+
+    Guild does not (yet) provide a syntax to specify a list of
+    integers generated from range-like
+    specification. E.g. `features=[0..7]` To search over all possible
+    bitmaps, the user would need to specify each value in a list.
+
+  flags-import:
+    - features
+
+encoded:
+  description:
+    Use an encoded list to enable features
+
+    This approach supports intuitive values for feature sets, but
+    requires exhaustive enumeration of choices to support
+    optimizations. It supports indiviual runs as well as batch
+    operations.
+
+    Guild does not (yet) provide a syntax to specify *run a grid
+    search over all available choices*. To search over all possible
+    choices, the user would need to provide the list explicitly.
+
+  flags:
+    features:
+      default: ''
+      choices:
+        - f1
+        - f2
+        - f3
+        - f1,f2
+        - f1,f3
+        - f2,f3
+        - f1,f2,f3
