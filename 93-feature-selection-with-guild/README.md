@@ -191,11 +191,11 @@ This uses Guild's establish function syntax.
 
 With this, the "expand to all choices" syntax might be:
 
-- `$ guild run features=all[]`
+- `$ guild run features=all-choices[]`
 
 And "expand to all perumtations" might be:
 
-- `$ guild run features=permute[]`
+- `$ guild run features=permute-choices[]`
 
 Syntax such as `[..]` and `[..!]` might be supported as syntactic
 sugar in these cases.
