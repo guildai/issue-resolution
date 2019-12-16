@@ -13,7 +13,8 @@ CANNOT recreate this issue with the steps below.
 
 Requirements:
 
-- 0.7.0.rc3
+- guild==0.7.0.rc3
+- tensorboard==1.14.0
 
 Generate a run:
 
@@ -26,6 +27,9 @@ View in TensorBoard:
 ```
 $ guild tensorboard
 ```
+
+Not seeing any errors in the console and the HParams plugin/tab is
+correct.
 
 ## Workarounds
 
