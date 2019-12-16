@@ -1,0 +1,36 @@
+# guild tensorboard with true/false flags
+
+https://github.com/guildai/guildai/issues/99
+
+## Problem
+
+It looks like Guild boolean values are presented to TB as "False" and
+"True" literal strings.
+
+## Recreating
+
+CANNOT recreate this issue with the steps below.
+
+Requirements:
+
+- 0.7.0.rc3
+
+Generate a run:
+
+```
+$ guild run test.py -y
+```
+
+View in TensorBoard:
+
+```
+$ guild tensorboard
+```
+
+## Workarounds
+
+Use integer values `1` and `0` for `True` and `False` respectively.
+
+## Fix
+
+Not sure at this point - unable to recreate.
