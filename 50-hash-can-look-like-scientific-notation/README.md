@@ -21,40 +21,78 @@ enclosing a value in quotes), Guild proceeds to convert it to a float.
 
 Requirements:
 
-- guildai<=0.6.5
+- guildai==0.6.6
 
-The script [`echo.py`](echo.py) prints a flag value `x` and its
-type. The script [`recreate`](recreate) runs multiple operations with
-different flag arguments for `x`.
+To recreate, this example uses sample runs in
+[`sample-guild-home/runs`](sample-guild-home/runs). In a terminal, set
+`GUILD_HOME` to use these runs.
 
-Run:
+```
+$ export GUILD_HOME=sample-guild-homes
+```
 
-    $ ./recreate
+Run `downstream` with an `upstream` run with a run ID that uses
+scientific notation.
+
+```
+$ guild run downstream upstream=67217e15
+```
 
 Output:
 
-    3e563: inf <type 'float'>
-    3e563: inf <type 'float'>
-    3e563: inf <type 'float'>
-    3e10: 30000000000.0 <type 'float'>
-    '3e10': 30000000000.0 <type 'float'>
-    "3e10": 30000000000.0 <type 'float'>
+```
+You are about to run downstream
+  x: 1.2
+  upstream: 6.7217e+19
+Continue? (Y/n
+```
 
-Note even in the case where a string is explicitly used (last two
-cases) Guild converts the value to a float.
+Note that Guild incorrectly represents the run ID as a float.
 
 ## Fix
 
-This is fixed in 0.6.6 (available in pre-release 0.6.6.dev6). The new
-behavior is:
+As of Guild 0.7.0.rc4, Guild handles floats that look like short run
+IDs as strings.
 
-    $ ./recreate
-    3e563: inf <type 'float'>
-    '3e563': '3e563' <type 'str'>
-    "3e10": '3e10' <type 'str'>
-    3e10: 30000000000.0 <type 'float'>
-    '3e10': '3e10' <type 'str'>
-    "3e10": '3e10' <type 'str'>
+To recreate, this example uses sample runs in
+[`sample-guild-home/runs`](sample-guild-home/runs). In a terminal, set
+`GUILD_HOME` to use these runs.
 
-Note that the hash values that can be converted to floats must be
-quoted to clarify that they are strings.
+```
+$ export GUILD_HOME=sample-guild-homes
+```
+
+Run `downstream` with an `upstream` run with a run ID that uses
+scientific notation.
+
+```
+$ guild run downstream upstream=67217e15
+```
+
+Expected output:
+
+```
+You are about to run downstream
+  upstream: '67217e15'
+  x: 1.2
+```
+
+Previous to this fix, the prompt for upstream contained `6.7217e+19`
+for the run ID.
+
+The `downstream` operation also includes a *float* flag `x`. With the
+type specified in the Guild file, flag values for `x` that would
+otherwise be treated as run ID strings are treated as floats.
+
+```
+$ guild run downstream x=67217e15
+```
+
+Expected output:
+
+```
+You are about to run downstream
+  upstream: '67217e15'
+  x: 6.7217e+19
+Continue? (Y/n)
+```

@@ -1,0 +1,10 @@
+upstream: {}
+
+downstream:
+  flags-import: all
+  flags:
+    x:
+      type: float
+  requires:
+    - operation: upstream
+      name: upstream
