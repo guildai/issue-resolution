@@ -1,0 +1,5 @@
+upstream: {}
+
+downstream:
+  requires:
+    - operation: upstream
