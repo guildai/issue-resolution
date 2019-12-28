@@ -1,0 +1,14 @@
+upstream:
+  flags-import: [sleep]
+
+downstream:
+  requires:
+    - operation: upstream
+
+steps:
+  flags:
+    sleep:
+      default: 1
+  steps:
+    - upstream sleep=${sleep}
+    - downstream
