@@ -78,7 +78,7 @@ Future possible enhancements:
 The functionality outlined above is available for experimentation in
 Guild 0.6.7.dev4.
 
-## Update 2019/12/29
+## Update 2019/12/29 - Guild resolves upstream ops at stage time
 
 Issues 60 was updated with a request that staged downstream ops be
 able to use output from staged upstream ops.
@@ -106,3 +106,29 @@ To confirm, check the output for each downstream:
 
     $ guild cat --output -o downstream 1
     $ guild cat --output -o downstream 2
+
+If a run is not available at stage time, Guild reports a warning and
+notes that the upstream dependency is "unspecified".
+
+Delete all of the upstream runs to ensure that none are available for
+resolution:
+
+    $ guild runs rm -o upstream
+
+Stage a downstream op:
+
+    $ guild run downstream --stage
+
+Note that Guild shows a warning message and stages the downstream
+operation with an "unspecified" upstream run.
+
+Next, run an upstream op:
+
+    $ guild run upstream -y
+
+And run the staged op using a queue:
+
+    $ guild run queue run-once=yes -y
+
+Note that Guild finally does resolve the dependency when the staged
+run is started.
