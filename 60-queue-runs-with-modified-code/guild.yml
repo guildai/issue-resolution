@@ -1,2 +1,10 @@
 test-path:
   main: src/test_path
+
+upstream:
+  exec: 'sh -c "echo $RUN_ID | tee upstream-run"'
+
+downstream:
+  exec: 'sh -c "echo upstream-run: $(cat upstream-run)"'
+  requires:
+    - operation: upstream

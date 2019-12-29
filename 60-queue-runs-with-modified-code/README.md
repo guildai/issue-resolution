@@ -77,3 +77,32 @@ Future possible enhancements:
 
 The functionality outlined above is available for experimentation in
 Guild 0.6.7.dev4.
+
+## Update 2019/12/29
+
+Issues 60 was updated with a request that staged downstream ops be
+able to use output from staged upstream ops.
+
+This is implemented in 0.7.0.rc3 and later.
+
+This project is updated with an example. To illustate the
+functionality, run:
+
+    $ guild run upstream --stage -y
+    $ guild run downstream --stage -y
+    $ guild run upstream --stage -y
+    $ guild run downstream --stage -y
+
+Note that each staged downstream resolves the latest upstream at the
+time of staging.
+
+Run the staged runs using a queue:
+
+    $ guild run queue run-once=yes -y
+
+Each downstream uses the upstream it was staged with.
+
+To confirm, check the output for each downstream:
+
+    $ guild cat --output -o downstream 1
+    $ guild cat --output -o downstream 2
