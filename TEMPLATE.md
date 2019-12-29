@@ -1,6 +1,6 @@
 # <title from GitHub Issue>
 
-<GitHub issue URL>
+https://github.com/guildai/guildai/issues/<Issue ID>
 
 ## Problem
 
