@@ -1,0 +1,6 @@
+train:
+  flags:
+    generate_pos:
+      type: boolean
+      default: false
+      choices: [true, false]
