@@ -128,6 +128,57 @@ If you're done with the unique Guild home, delete it:
 
     $ rm -rf <some unique location>
 
+## Update 2019/12/29 - Can't set Guild home for remote runs
+
+The approach outlined above, which relies on isolating parallel runs
+using separate Guild home locations, is not currently feasible for
+remote runs.
+
+1. There's no way to set Guild home for a specific run. While Guild
+   home can be set in user config, it's unreasonable to require file
+   edits to set per-run information.
+
+2. Even if this were possible, merging runs as outlined above on
+   remote systems is not directly supported. It requires a cumbersome
+   pull/push to consolidate runs.
+
+## Update 2019/12/30 - Direct solution for problems 1 and 2
+
+Rather than pursue run isolation using separate Guild homes, we've
+opted to directly solve problems 1 and 2 above. See Fix below for
+details.
+
 ## Fix
 
-There is no fix available as of 0.7.0.
+As of 0.7.0.rc4, Guild now supports two features that address problems
+1 and 2 above.
+
+### Fix for problem #1 (stepped ops use wrong upstream)
+
+As of 0.7.0.rc4, by default, steps only consider child runs when
+resolving requirements. This effectively isolated all runs within a
+stepped operation. This behavior can be changed by setting
+`isolate-runs` to `no` for any operation that needs to resolve runs
+outside the stepped parent operation.
+
+To illustate, follow the steps for recreating the problem above. Using
+the `steps` operation, the correct behavior is implemented.
+
+To illustrate the old behavior, follow the same steps but run
+`steps-no-isolate` instead. The incorrect behavior is exhibited.
+
+### Fix for problem #2 (queue doesn't run operations in parallel)
+
+As of 0.7.0.rc4, `queue` operations may be run concurrently, either in
+separate terminals or as background processes, to process staged runs
+in parallel.
+
+Note that `ignore-running` must be set to `yes` when running more than
+one queue for a given environment. If this flag is not set, only one
+staged run will be started at a time. The default behavior assumes
+that runs should have full access to the system. If it's safe to run
+operations concurrently, `igore-running` is used to bypass this check.
+
+To illustrate concurrent runs, start multiple queues, either in
+separate terminals or in the background, and stage multiple `steps`
+operations.

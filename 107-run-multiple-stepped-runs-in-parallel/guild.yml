@@ -12,3 +12,12 @@ steps:
   steps:
     - upstream sleep=${sleep}
     - downstream
+
+steps-no-isolate:
+  flags:
+    sleep:
+      default: 1
+  steps:
+    - upstream sleep=${sleep}
+    - run: downstream
+      isolate-runs: no
