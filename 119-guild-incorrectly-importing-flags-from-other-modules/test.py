@@ -1,6 +1,6 @@
 import argparse
 
-import submod
+import submod  # Unused but triggers the bug. See submod.py
 
 p = argparse.ArgumentParser()
 p.add_argument("--foo", default=123)
