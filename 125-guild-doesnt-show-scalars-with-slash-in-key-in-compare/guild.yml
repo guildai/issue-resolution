@@ -1,0 +1,14 @@
+
+mnist-fit:
+  description: Fit MNIST MLP (logs system metrics)
+  main: mnist_mlp
+  flags-import: [epochs, batch_size]
+  flags:
+    epochs: 1
+  output-scalars: no
+  plugins: all
+
+test-summaries:
+  description: Logs summaries to test compare
+  main: test_summaries
+  plugins: all
