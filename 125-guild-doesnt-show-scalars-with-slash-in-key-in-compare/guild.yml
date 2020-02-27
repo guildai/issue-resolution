@@ -12,3 +12,11 @@ test-summaries:
   description: Logs summaries to test compare
   main: test_summaries
   plugins: all
+
+test-summaries2:
+  description: tets-summaries with compare cols
+  main: test_summaries
+  plugins: all
+  compare:
+    - a
+    - a/b as ab
