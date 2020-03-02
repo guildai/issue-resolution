@@ -4,14 +4,19 @@ https://github.com/guildai/guildai/issues/72
 
 ## Problem
 
-Guild appears to be buffering ssh output per line, which hides any
-progress updates that display on a single line.
+Guild is buffering lines at two points:
+
+- Watch command
+- Run output processing
+
+These issues are fixed in `0.7.0.rc8`.
 
 ## Recreating
 
 Requirements:
 
-- guildai<=0.7.0.rc6
+- guildai<=0.7.0.rc7
+- tqdm (required if `use_tqdm=yes` is specified - see below)
 
 ### SSH remote config
 
@@ -50,11 +55,11 @@ Guild does not print the progress until the operation completes.
 
 ## Workarounds
 
-None at this time.
+There are no workarounds. Upgrade to `0.7.0.rc8` or later for a fix.
 
 ## Fix
 
-Under development.
+Fixed in `0.7.0.rc8`.
 
 ## Related Issues
 
