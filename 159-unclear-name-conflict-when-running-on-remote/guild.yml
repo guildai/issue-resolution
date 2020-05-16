@@ -1,0 +1,8 @@
+- package: foo2
+  data-files:
+    - data.txt
+
+- operations:
+    train:
+      requires:
+        - file: data.txt
