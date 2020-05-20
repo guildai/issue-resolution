@@ -11,7 +11,7 @@ the issue as we already have that info.>
 
 Requirements:
 
-- <version of Guild this applies to>
+- guild<=<applicable Guild version>
 - <other requirements - delete if unused>
 
 <Describe the steps to recreate in your own words. Copy and paste as
