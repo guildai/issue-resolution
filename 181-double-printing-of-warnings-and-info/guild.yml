@@ -1,0 +1,12 @@
+default:
+  main: test
+  flags-import: yes
+
+no-log-init:
+  main: test
+  flags-import: yes
+  env:
+    LOG_INIT_SKIP: 1
+
+alt:
+  exec: python -m test
