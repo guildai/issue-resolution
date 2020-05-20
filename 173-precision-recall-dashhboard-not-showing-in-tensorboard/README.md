@@ -1,4 +1,4 @@
-# recision-recall dashhboard not showing in tensorboard
+# Precision-recall dashhboard not showing in tensorboard
 
 https://github.com/guildai/guildai/issues/173
 
@@ -10,7 +10,7 @@ Guild doesn't support the full list of TensorBoard plugins.
 
 Requirements:
 
-- guild<-0.7.0.rc9
+- guild<=0.7.0.rc9
 - tensorflow
 
 Change to this directory and run the following:
