@@ -1,0 +1,2 @@
+test:
+  main: pr_curve_demo --logdir .
