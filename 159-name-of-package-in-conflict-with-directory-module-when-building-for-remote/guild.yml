@@ -1,4 +1,4 @@
-- package: foo2
+- package: foo
   data-files:
     - data.txt
 
