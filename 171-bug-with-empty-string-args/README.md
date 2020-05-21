@@ -33,5 +33,8 @@ correct:
 
 ## Workarounds
 
-None at this time. This is a high priority bug, however, that will be
-fixed in the next pre-release.
+None. Please upgrade to 0.7.0.rc10 or later.
+
+## Fix
+
+This is issue is fixed in 0.7.0.rc10.
