@@ -9,7 +9,7 @@ It looks like Guild boolean values are presented to TB as "False" and
 
 ## Recreating
 
-CANNOT recreate this issue with the steps below.
+Cannot recreate this issue with the steps below.
 
 Requirements:
 
@@ -38,3 +38,7 @@ Use integer values `1` and `0` for `True` and `False` respectively.
 ## Fix
 
 Not sure at this point - unable to recreate.
+
+## Related Issues
+
+- https://github.com/guildai/guildai/issues/163

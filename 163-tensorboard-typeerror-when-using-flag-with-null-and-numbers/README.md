@@ -1,33 +1,37 @@
-# <title from GitHub Issue>
+# Tensorboard TypeError when using flag with null and numbers
 
-https://github.com/guildai/guildai/issues/<Issue ID>
+https://github.com/guildai/guildai/issues/163
 
 ## Problem
 
-<Outline the problem as you see it. This should not be a copy-paste of
-the issue as we already have that info.>
+Not sure.
 
 ## Recreating
 
+Cannot recreate with steps below.
+
 Requirements:
 
-- <version of Guild this applies to>
-- <other requirements - delete if unused>
+- guild<=0.7.0.rc9
 
-<Describe the steps to recreate in your own words. Copy and paste as
-needed from the issue or just reference the issue if it's complete.>
+Change to this directory and run:
+
+    $ guild run test.py
+
+View runs in TensorBoard:
+
+    $ guild tensorboard
+
+Need help to reproduce this - add steps to [`test.py`](test.py).
 
 ## Workarounds
 
-<Describe any way the issue can be worked-around without the
-fix. State if there are no known work-arounds.>
+Not sure.
 
 ## Fix
 
-<Describe the fix and the release it's available in. If there's no
-thoughts yet to a fix or a fix isn't applicable (e.g. not a bug or
-otherwise decide not to fix) state that here.>
+Not sure at this point - unable to recreate.
 
 ## Related Issues
 
-<List any related issues using their full GitHub URL.>
+- https://github.com/guildai/guildai/issues/99
