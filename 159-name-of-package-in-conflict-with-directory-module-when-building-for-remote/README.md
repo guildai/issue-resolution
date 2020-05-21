@@ -4,8 +4,8 @@ https://github.com/guildai/guildai/issues/159
 
 ## Problem
 
-Guild is not correctly creating a package or is not explaining clearly
-why it can't and providing instructions on what to do about it.
+Guild does not detect a package name conflict and provide instructions
+on what to do about it.
 
 ## Recreating
 
@@ -64,6 +64,9 @@ changed to a value other than `foo`.
 
 Note that `foo` exists as a local package.
 
+The expected behavior is that Guild detect the name conflict and
+provide some guidance as to how to correct the problem.
+
 ## Reproduce Package Error
 
 The same error underlying problem be recreated by running `package`:
@@ -86,4 +89,5 @@ package name.
 
 ## Fix
 
-Pending
+This is fixed in 0.7.0.rc10. Guild now detects the name conflict and
+instructs the user to change the name in the Guild file.
