@@ -13,6 +13,8 @@ Requirements:
 
 - guild<=0.7.0.rc9
 
+## Reproduce Remote Op Error
+
 This example requires a remote config. The following config is used to
 create a `localhost` remote over ssh.
 
@@ -61,6 +63,21 @@ The operation succeeds if `package` in [`guild.yml`](guild.yml) is
 changed to a value other than `foo`.
 
 Note that `foo` exists as a local package.
+
+## Reproduce Package Error
+
+The same error underlying problem be recreated by running `package`:
+
+    $ guild package
+
+Incorrect output:
+
+```
+running bdist_wheel
+running build
+running build_py
+error: package directory './foo/foo' does not exist
+```
 
 ## Workarounds
 
