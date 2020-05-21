@@ -1,0 +1,4 @@
+steps:
+  steps:
+    - test.py fail=yes
+    - test.py fail=no
