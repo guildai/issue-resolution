@@ -62,6 +62,14 @@ the `out` flag:
 - `stdout`
 - a filename (view the file after the operation finished)
 
+To run all scenarios:
+
+    $ guild run test.py out=[null,default,stderr,stdout,log.txt]
+
+Use `guild cat --output [RUN]` to view output for a particular
+run. Use `guild cat -p log.txt` to view progress output for the last
+run in the batch.
+
 ## Workarounds
 
 Unfortunately, None if the target stream cannot be `sys.stdout` (as is
