@@ -11,6 +11,11 @@ The issue reports the state when output is `None` - but this is
 equivalent to `sys.stderr` or not specifying a value for the `file`
 argument. See *Recreating* below for more information.
 
+Note also that the progress bar width for `tqdm` is different when run
+with Guild. When run without Guild, the progress bar takes up the full
+console width. When run with Guild, the progress bar is the default of
+10.
+
 ## Recreating
 
 Requirements:
@@ -43,9 +48,8 @@ With the default flags, the output may be jumped like this:
 100%|██████████| 10/10 [00:00<00:00, 93.81it/s]
 ```
 
-Note that jumbled output is not consistent and may not appear for
-certain values of `wait`. If the output is not jumbed, try different
-values for `wait` or increase `steps`.
+If the output is not jumbed, try running again or try different values
+for `wait` or increase `steps`.
 
 This behavior occurs when the `out` flag is any of these values:
 
@@ -69,6 +73,11 @@ To run all scenarios:
 Use `guild cat --output [RUN]` to view output for a particular
 run. Use `guild cat -p log.txt` to view progress output for the last
 run in the batch.
+
+Note that when Guild's run output is disabled by setting
+`NO_RUN_OUTPUT` to `1`, output is synchronized.
+
+    $ NO_RUN_OUTPUT=1 guild run test.py -y
 
 ## Workarounds
 
