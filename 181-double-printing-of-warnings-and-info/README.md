@@ -73,3 +73,7 @@ This is illustrated by [`test2.py`](test2.py).
 
 The reported behavior is as designed. Refer to *Workarounds* above for
 ways to bypass Guild's default log init.
+
+## Related Issues
+
+- https://github.com/guildai/issue-resolution/tree/master/55-guild-overrides-log-settings-configured-via-basicConfig

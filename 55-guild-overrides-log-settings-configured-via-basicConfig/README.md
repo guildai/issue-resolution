@@ -104,6 +104,11 @@ And confirm that the log file is created as expected:
 
 ## Fix
 
+UPDATE: This is handled in 0.7 through a couple methods. See [issue
+doc for
+#181](https://github.com/guildai/issue-resolution/tree/master/181-double-printing-of-warnings-and-info)
+for details.
+
 As of Guild 0.6.6 this is has not been fixed. However, there is a
 work-around for common cases (see above).
 
@@ -173,3 +178,7 @@ options 2 through 5:
    log init behavior.
 
 3. Document this scheme using a Guide or KB article.
+
+## Related Issues
+
+- https://github.com/guildai/issue-resolution/tree/master/181-double-printing-of-warnings-and-info
