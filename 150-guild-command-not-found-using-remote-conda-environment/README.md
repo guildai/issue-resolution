@@ -18,7 +18,7 @@ See https://github.com/guildai/guildai/issues/150 for details.
 
 ### Use env activation to set PATH
 
-Use and environment by specifying `guild-env` or `conda-env` and edit
+Use an environment by specifying `guild-env` or `conda-env` and edit
 the activation script (e.g. `<venv>/bin/activate` for virtualenv/Guild
 envs) to set `PATH` to include the Guild location.
 
