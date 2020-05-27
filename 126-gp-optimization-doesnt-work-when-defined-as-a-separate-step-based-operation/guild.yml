@@ -1,0 +1,13 @@
+evaluate:
+  main: test
+  flags:
+    x:
+      default: 94
+tune:
+  steps:
+    - run: evaluate
+        x=[0:100]
+        --optimizer gp
+        --max-trials 5
+        --minimize loss
+        -Fo random-starts=2
