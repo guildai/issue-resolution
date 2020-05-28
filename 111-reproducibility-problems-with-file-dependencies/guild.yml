@@ -1,0 +1,16 @@
+test-default:
+  main: guild.pass
+  requires:
+    - file: msg.txt
+
+test-link:
+  main: guild.pass
+  requires:
+    - file: msg.txt
+      target-type: link
+
+test-copy:
+  main: guild.pass
+  requires:
+    - file: msg.txt
+      target-type: copy
