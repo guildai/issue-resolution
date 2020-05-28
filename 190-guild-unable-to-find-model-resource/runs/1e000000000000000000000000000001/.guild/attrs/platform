@@ -1,0 +1,6 @@
+architecture: '64bit '
+cpus: 8
+processor: x86_64
+python_version: 2.7.17 (default, Apr 15 2020, 17:20:14) [GCC 7.5.0]
+uname: 'Linux omaha 5.3.0-46-generic #38~18.04.1-Ubuntu SMP Tue Mar 31 04:17:56 UTC
+  2020 x86_64 x86_64'

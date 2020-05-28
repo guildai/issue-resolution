@@ -1,0 +1,6 @@
+upstream: guild.pass
+
+downstream:
+  main: guild.pass
+  requires:
+    - operation: upstream

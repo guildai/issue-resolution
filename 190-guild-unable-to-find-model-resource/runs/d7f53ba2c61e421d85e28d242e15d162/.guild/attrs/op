@@ -1,0 +1,19 @@
+deps: []
+flag-null-labels: {}
+label-template: null
+op-cmd:
+  cmd-args:
+  - ${python_exe}
+  - -um
+  - guild.op_main
+  - guild.pass
+  - --
+  - __flag_args__
+  cmd-env:
+    FLAGS_DEST: globals
+    GUILD_OP: upstream
+    GUILD_PLUGINS: ''
+    PROJECT_DIR: /home/garrett/SCM/guild-issues/190-guild-unable-to-find-model-resource
+output-scalars: null
+python-requires: null
+sourcecode-root: .guild/sourcecode
