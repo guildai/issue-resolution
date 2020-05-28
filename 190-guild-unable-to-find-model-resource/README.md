@@ -15,8 +15,7 @@ Requirements:
 
 To recreate this problem, change to this directory and run:
 
-    $ export GUILD_HOME=.
-    $ guild run downstream upstream=1e0000000
+    $ guild -H . run downstream upstream=1e0000000
     WARNING: cannot find a suitable run for required resource 'upstream'
     You are about to run downstream
       upstream: '1.0'
@@ -25,7 +24,7 @@ To recreate this problem, change to this directory and run:
 If you specify the run ID with one less `0`, Guild recognizes the flag
 arg as a run ID:
 
-    $ guild run downstream upstream=1e000000
+    $ guild -H . run downstream upstream=1e000000
     You are about to run downstream
       upstream: '1e000000'
     Continue? (Y/n) n
