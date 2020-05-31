@@ -1,0 +1,4 @@
+test:
+  flags-import: yes
+  env:
+    LOGDIR: .

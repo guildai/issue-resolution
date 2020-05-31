@@ -1,5 +1,0 @@
-embeddings {
-tensor_name: "embeddings:00000"
-tensor_path: "00000/embeddings/tensors.tsv"
-metadata_path: "00000/embeddings/metadata.tsv"
-}
