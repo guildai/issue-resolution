@@ -2,11 +2,12 @@
 
 https://github.com/guildai/guildai/issues/101
 
+This issue is resolved in 0.7.0.rc10.
+
 ## Problem
 
-There's an issue resolving runs on remotes under some
-condition. Cannot recreate in the simple case of running over ssh on
-localhost.
+Guild resolves required runs for remote ops using local runs rather
+than remote runs.
 
 ## Recreating
 
@@ -87,8 +88,31 @@ operation despite a run being available.
 
 ## Workarounds
 
-None known at this time.
+For versions prior to 0.7.0.rc10, specify the run ID explicitly as a
+flag value as a work around. Otherwise this is resolved in 0.7.0.rc10.
 
 ## Fix
 
-Pending
+Upgrade to 0.7.0.rc10 and re-run the steps above to confirm the fix.
+
+When you run `downstream` you should be prompted with the run ID for
+the latest remote `upstream` run.
+
+The downstream operation should complete successfully with output like
+this:
+
+```
+Starting downstream on debug-101 as ...
+Resolving upstream dependency
+Using output from run ... for upstream resource
+I am downstream ...
+I am using upstream <run ID of specified upstream>
+Run ... stopped with a status of 'completed'
+```
+
+If there are more than one upstream runs, you can specify the run to
+use with the `upstream` flag. You can specify a partial run ID.
+
+If you specify an invalid run ID for `upstream` (i.e. a run matching
+the value doesn't exist), Guild warns you but runs the operation
+anyway, which fails.

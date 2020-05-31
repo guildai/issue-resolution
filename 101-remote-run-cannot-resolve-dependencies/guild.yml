@@ -3,3 +3,4 @@ upstream: {}
 downstream:
   requires:
     - operation: upstream
+      warn-if-empty: no
