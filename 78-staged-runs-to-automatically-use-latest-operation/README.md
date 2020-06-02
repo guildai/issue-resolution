@@ -44,7 +44,12 @@ This issue has been fixed in 0.6.7.dev9.
 The following stages a and then b, using the staged a run ID:
 
 ```
-$ guild run a --stage --yes
-$ guild run b --stage --yes
+$ guild run a --stage --y
+$ guild run b --stage --y
+```
 
+You can run the staged runs to completion with a queue.
+
+```
+$ guild run queue run-once=yes -y
 ```

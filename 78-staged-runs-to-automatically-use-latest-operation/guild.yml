@@ -5,3 +5,4 @@ b:
   main: guild.pass
   requires:
     - operation: a
+      warn-if-empty: no

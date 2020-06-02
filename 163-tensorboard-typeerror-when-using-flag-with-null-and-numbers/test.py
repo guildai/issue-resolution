@@ -1,12 +1,9 @@
-import tensorboardX
+import random
 
-L1 = 5
-L2 = None
+x = None
+extra_metrics = False
 
-print("loss: 1.123")
-print("acc1: null")
-print("acc2: None")
-print("acc3: 0")
-
-with tensorboardX.SummaryWriter(".") as w:
-    w.add_scalar("acc4", 2.234)
+print("loss: %f" % random.random())
+if extra_metrics:
+    print("foo: 123")
+    print("bar: 123")
