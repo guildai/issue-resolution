@@ -2,6 +2,8 @@
 
 https://github.com/guildai/guildai/issues/61
 
+This is fixed in 0.7.0.rc10.
+
 ## Problem
 
 Batch runs aren't passing resource config along to their trials.
@@ -12,9 +14,12 @@ Requirements:
 
 - guild<=0.6.7.dev3
 
-Run:
+To recreate, change to this directory and run these steps.
 
-    ./recreate
+    guild run train -l v1 -y
+    guild run train -l v2 -y
+    guild run retrain x=[1] model=`guild select 2`
+    guild runs | head -n4
 
 Note that the batch run uses the latest model even though an earlier
 model is explicitly set in the batch command.

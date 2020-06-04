@@ -1,6 +1,7 @@
 train: {}
 
 retrain:
+  flags-import: [x]
   requires:
     - operation: train
       select: train_id
