@@ -1,3 +1,7 @@
+test:
+  flags:
+    list_as_str: '[1,2,3]'
+
 globals:
   flags-import: all
 
