@@ -1,0 +1,5 @@
+globals:
+  flags-import: all
+
+args:
+  flags-import: all
