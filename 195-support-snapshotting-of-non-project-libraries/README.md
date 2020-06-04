@@ -12,7 +12,6 @@ files. It would be handle to copy required libraries.
 Requirements:
 
 - guild<=0.7.0
-- Python 3
 
 ## Workarounds
 
@@ -25,14 +24,20 @@ To run the workaround, change to this directory and run:
     shared module loaded from <run dir>/.guild/sourcecode/shared/__init__.pyc
     hello
 
+The use of `realpath` ensures that the `PYTHONPATH` env var contains
+an absolute reference to the library. This is what you'd want
+typically when setting `PYTHONPATH` to a library located on the
+system.
+
+Note that `shared` is loaded from the run directory.
+
 List the source code files for the run:
 
     $ guild run ls --sourcecode
 
 Note that `shared` is located with the run.
 
-This operation requires `PYTHONPATH` to be set externally. Try running
-`test.py` without setting `PYTHONPATH`:
+Try running `test.py` without setting `PYTHONPATH`:
 
     $ guild run test.py -y
     Traceback (most recent call last):
@@ -51,7 +56,8 @@ copied as source code. This simulates the case where a required
 library is available on the system but it not available to the
 project.
 
-Setting `PYTHONPATH` makes `shared` available to the script.
+Setting `PYTHONPATH` to the absolute path in the project makes
+`shared` available to the script.
 
 `test.py` does not import `shared` outright. It checks if it's running
 under Guild (reads `GUILD_SOURCECODE` environment variable) and uses
