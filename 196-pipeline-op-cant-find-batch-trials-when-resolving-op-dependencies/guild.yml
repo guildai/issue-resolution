@@ -1,0 +1,38 @@
+upstream:
+  flags:
+    a: null
+
+downstream:
+  flags:
+    b: null
+  requires:
+    - operation: upstream
+      warn-if-empty: no
+
+pipeline-1:
+  steps:
+    - upstream a=[1,2]
+    - downstream b=[3,4]
+
+pipeline-2:
+  steps:
+    - upstream a=[1,2]
+    - run: downstream b=[3,4]
+      isolate-runs: no
+
+pipeline-3:
+  steps:
+    - upstream a=1
+    - downstream b=[3,4]
+    - upstream a=2
+    - downstream b=[3,4]
+
+pipeline-4:
+  flags:
+    a: [1,2]
+    b: [3,4]
+  steps:
+    - run: upstream a=${a} --needed
+      isolate-runs: no
+    - run: downstream b=${b} --needed
+      isolate-runs: no
