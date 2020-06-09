@@ -12,7 +12,7 @@ the issue as we already have that info.>
 Requirements:
 
 - guild<=<applicable Guild version>
-- <other requirements - delete if unused>
+- See [requirements.txt](requirements.txt)
 
 <Describe the steps to recreate in your own words. Copy and paste as
 needed from the issue or just reference the issue if it's complete.>
