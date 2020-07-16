@@ -21,13 +21,15 @@ Requirements:
 
 - guild<=0.7.0.rc9
 
+To reproduct, run:
+
     $ guild run test.py x=[1,null]
 
-View runs in TensorBoard:
+Then run:
 
     $ guild tensorboard
 
-Traceback:
+You get traceback:
 
 ```
 ...
