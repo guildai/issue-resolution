@@ -1,0 +1,5 @@
+test:
+  flags:
+    x:
+      type: string
+      default: 13
