@@ -1,5 +1,7 @@
 test:
   flags:
     x:
-      type: string
+      # Override default type string from test.py with support for any
+      # type (auto)
+      type: auto
       default: 13

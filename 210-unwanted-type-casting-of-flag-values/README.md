@@ -43,4 +43,12 @@ $ guild run test x="'013'"
 
 ## Fix
 
-Pending
+Fix will be available in 0.7.1.
+
+Applied in https://github.com/guildai/guildai/commit/9a1ca9ec
+
+To test, run:
+
+```
+$ guild check -nt TEST.md
+```
