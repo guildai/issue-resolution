@@ -22,8 +22,9 @@ guild runs info
 
 ## Workarounds
 
-Not sure. Avoiding NaN and Inf as scalars but that's not reasonable.
+There's no good workaround for this other than not logging nan and inf
+scalars.
 
 ## Fix
 
-Pending
+This issue is resolved in 0.7.1. See [TESTS.md](TESTS.md).
