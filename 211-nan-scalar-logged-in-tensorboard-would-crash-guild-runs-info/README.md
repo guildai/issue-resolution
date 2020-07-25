@@ -28,3 +28,9 @@ scalars.
 ## Fix
 
 This issue is resolved in 0.7.1. See [TESTS.md](TESTS.md).
+
+To verify the fix, run:
+
+```
+guild check -n TESTS.md
+```
