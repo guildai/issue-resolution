@@ -18,7 +18,7 @@ Guild shows the last value, which is 'inf' in `guild runs info`.
     >>> run("guild runs info")
     id: ...
     scalars:
-      runs/...#loss: inf (step 2)
+      runs/...#loss: inf (step 4)
     <exit 0>
 
 To show all scalars, use `--all-scalars`.
@@ -29,7 +29,7 @@ To show all scalars, use `--all-scalars`.
       runs/...#loss:
         avg: nan (step 4)
         first: nan (step 1)
-        last: inf (step 2)
+        last: inf (step 4)
         max: nan (step 1)
         min: nan (step 1)
         total: nan (step 4)
