@@ -29,7 +29,7 @@ guild run sleep.py seconds=[2]*5 -y
 ```
 
 Note in the queue terminal that the queue starts many of the staged
-runs. The batch starts all of the staged runs.q
+runs. The batch starts all of the staged runs.
 
 ## Workarounds
 
