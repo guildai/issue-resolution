@@ -19,7 +19,7 @@ Requirements:
 Start a queue:
 
 ```
-guild run queue -y
+guild run queue poll-interval=2 -y
 ```
 
 In a separate terminal, start a batch of sleep operations:
