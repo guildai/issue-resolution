@@ -1,0 +1,15 @@
+- package: road-segmentation-package
+
+- model: unet-r1
+  sourcecode:
+    - exclude:
+        dir:
+          - input
+  operations:
+    prepare-1:
+      flags-import: yes
+      main: operations/prepare
+
+    prepare-2:
+      flags-import: yes
+      main: operations.prepare
