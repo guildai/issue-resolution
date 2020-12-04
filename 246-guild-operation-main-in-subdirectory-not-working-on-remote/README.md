@@ -12,7 +12,7 @@ expected.
 
 Requirements:
 
-- guild<=<applicable Guild version>
+- guild<=0.7.0
 
 ### Example 1 - No Package in Main Spec
 
