@@ -1,0 +1,76 @@
+#!/usr/bin/env python3
+
+import argparse
+import json
+import os
+import re
+import sys
+import urllib.request
+
+
+def main():
+    args = _init_args()
+    print("Getting GitHub issue %i" % args.issue_number)
+    data = _get_issue_data(args)
+    issue_dir = _issue_dir(data)
+    print("Creating %s" % issue_dir)
+    _makedir(issue_dir)
+    _init_readme(data, issue_dir)
+
+
+def _init_args():
+    p = argparse.ArgumentParser()
+    p.add_argument("issue_number", metavar="NUM", help="Issue number.", type=int)
+
+    return p.parse_args()
+
+
+def _get_issue_data(args):
+    resp = urllib.request.urlopen(
+        "http://api.github.com/repos/guildai/guildai/issues/%i" % args.issue_number
+    )
+    return json.load(resp)
+
+
+def _issue_dir(issue_data):
+    number = issue_data["number"]
+    title = _issue_dir_title(issue_data["title"])
+    return "%i-%s" % (number, title)
+
+
+def _issue_dir_title(issue_title):
+    return re.sub(r"[^a-z0-9]+", "-", issue_title.lower())
+
+
+def _makedir(path):
+    try:
+        os.makedirs(path)
+    except OSError as e:
+        if e.errno != 17:
+            raise
+        raise SystemExit("error: %s exists" % path)
+
+
+def _init_readme(issue_data, dest):
+    readme_path = os.path.join(dest, "README.md")
+    if os.path.exists(readme_path):
+        raise SystemExit("error: README.md in %s exists" % dest)
+    template = open("TEMPLATE.md").read()
+    readme_src = _apply_issue_to_template(template, issue_data)
+    with open(readme_path, "w") as f:
+        f.write(readme_src)
+
+
+def _apply_issue_to_template(template, data):
+    subs = [
+        ("<Title from GitHub Issue>", data["title"]),
+        ("<Issue ID>", str(data["number"])),
+    ]
+    applied = template
+    for s, repl in subs:
+        applied = applied.replace(s, repl)
+    return applied
+
+
+if __name__ == "__main__":
+    main()

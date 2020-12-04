@@ -1,4 +1,4 @@
-# <title from GitHub Issue>
+# <Title from GitHub Issue>
 
 https://github.com/guildai/guildai/issues/<Issue ID>
 
