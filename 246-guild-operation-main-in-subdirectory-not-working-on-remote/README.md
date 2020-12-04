@@ -23,11 +23,8 @@ Guild. The slash denotes a "path to the Python code" rather a package
 path. While this works, it runs the code outside of the intended
 `operations` package. As a result, relative imports fail.
 
-``` command
-guild run prepare-1 -y
 ```
-
-``` output
+$ guild run prepare-1 -y
 Traceback (most recent call last):
   File ".guild/sourcecode/operations/prepare.py", line 4, in <module>
     from . import road_segmentation
@@ -38,11 +35,8 @@ While a possible workaround is to use absolute imports, this should be
 considered an anti-pattern.
 
 
-``` command
-guild run prepare-1 relative_import=no -y
 ```
-
-``` output
+$ guild run prepare-1 relative_import=no -y
 hello
 ```
 
@@ -53,11 +47,8 @@ hello
 full module including the package. With this spec, the operation
 succeeds.
 
-``` command
-guild run prepare-2 -y
 ```
-
-``` output
+$ guild run prepare-2 -y
 hello
 ```
 
