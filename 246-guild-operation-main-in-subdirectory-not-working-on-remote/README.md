@@ -57,4 +57,4 @@ recognized as a Python package.
 
 ## Fix
 
-The behavior is by design - nothing to fix.
+The behavior is by design.
