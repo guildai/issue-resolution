@@ -1,0 +1,3 @@
+train:
+  flags-dest: config:flags.yml
+  flags-import: all
