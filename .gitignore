@@ -3,4 +3,5 @@
 build
 gpkg.*
 venv
+venv-*
 .guild
