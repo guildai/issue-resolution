@@ -30,7 +30,7 @@ None
 
 ## Fix
 
-This is fixed in 0.7.1 and later. For steps see `FIX.md` or run `make verify-fix`.
+This is fixed in 0.7.1 and later. For steps see [`FIX.md`](FIX.md) or run `make verify-fix`.
 
 ## Related Issues
 
