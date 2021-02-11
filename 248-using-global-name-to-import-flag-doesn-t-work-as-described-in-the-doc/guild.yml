@@ -1,0 +1,3 @@
+op:
+  flags-dest: global:params
+  flags-import: all
