@@ -8,7 +8,10 @@ https://github.com/guildai/guildai/issues/271
 
 ## Problem
 
-Unclear at this time. See *Recreating* below for details.
+Guild does not write list values correctly to generated config files.
+
+This is resolved in 0.7.3.rc2. See [FIX.md](FIX.md) for expected
+behavior.
 
 ## Recreating
 
@@ -85,22 +88,8 @@ a list and instead uses the specified string directly.
 
 ## Workarounds
 
-Guild does not correctly support list types for config files. The
-workaround is to use another interface type or use a string value to
-encode and decode a list.
-
-The `workaround` operation illustrates how a list can be
-encoded/decoded using shell lexcial syntax. See
-[encode_list.py](encode_list.py) and [test2.yaml](test2.yaml) details.
-
-    $ guild run workaround -y
-    Resolving config:test2.yaml dependency
-    ['single value']
-
-    $ guild run workaround -y encoded_list="a b 'c d'"
-    Resolving config:test2.yaml dependency
-    ['a', 'b', 'c d']
+Upgrade to 0.7.3.rc2 or later to resolve this.
 
 ## Fix
 
-Under development.
+Fixed in 0.7.3.rc2.
