@@ -38,17 +38,8 @@ The baseline functionality from Python:
     $ python test.py
     ['single value']
 
-Guild correctly detects the flag:
-
-    $ guild run test --help-op
-    Usage: guild run [OPTIONS] test [FLAG]...
-    <BLANKLINE>
-    Use 'guild run --help' for a list of options.
-    <BLANKLINE>
-    Flags:
-      a_list  (default is '''single value''')
-
-Notably, Guild does detect the list type and sets `arg-split` to true:
+Guild does detect the flag as a list type and sets `arg-split` to
+true:
 
     $ guild run test --test-flags 2>/dev/null
     flags-dest: config:test.yaml
@@ -99,7 +90,8 @@ workaround is to use another interface type or use a string value to
 encode and decode a list.
 
 The `workaround` operation illustrates how a list can be
-encoded/decoded using shell lexcial syntax.
+encoded/decoded using shell lexcial syntax. See
+[encode_list.py](encode_list.py) and [test2.yaml](test2.yaml) details.
 
     $ guild run workaround -y
     Resolving config:test2.yaml dependency
