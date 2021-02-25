@@ -1,0 +1,9 @@
+test:
+  main: test
+  flags-dest: config:test.yaml
+  flags-import: all
+
+workaround:
+  main: encode_list
+  flags-dest: config:test2.yaml
+  flags-import: all
