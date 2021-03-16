@@ -18,6 +18,7 @@ Generate a run with a dict flag val.
 
     $ guild run test.py x='{foo: 1}' -y
     {'foo': 1}
+    s: 1.0
     <exit 0>
 
 Run the `tensorboard` command. Note succeeds. We don't confirm the

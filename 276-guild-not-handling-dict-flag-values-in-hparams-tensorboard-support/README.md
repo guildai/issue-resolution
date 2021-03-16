@@ -33,6 +33,7 @@ Generate a run with a dict flag value.
 
     $ guild run test.py x='{foo: 1}' -y
     {'foo': 1}
+    s: 1.0
     <exit 0>
 
 Show the error using the `--test-logdir` option, which sets up the
