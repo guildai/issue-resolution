@@ -5,3 +5,4 @@ gpkg.*
 venv
 venv-*
 .guild
+.ipynb_checkpoints
