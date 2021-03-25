@@ -1,3 +1,7 @@
+---
+doctest-type: bash
+---
+
 # <Title from GitHub Issue>
 
 https://github.com/guildai/guildai/issues/<Issue ID>
