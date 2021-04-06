@@ -39,7 +39,11 @@ def _issue_dir(issue_data):
 
 
 def _issue_dir_title(issue_title):
-    return re.sub(r"[^a-z0-9]+", "-", issue_title.lower())
+    return _strip_dashes(re.sub(r"[^a-z0-9]+", "-", issue_title.lower()))
+
+
+def _strip_dashes(s):
+    return s.strip("-")
 
 
 def _makedir(path):
