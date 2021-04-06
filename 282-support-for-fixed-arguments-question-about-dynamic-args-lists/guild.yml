@@ -1,0 +1,9 @@
+train-thing-1:
+  main: test --sub_thing thing1
+  flags-import: all
+  flags-import-skip: [sub_thing]
+
+train-thing-2:
+  main: test --sub_thing thing2
+  flags-import: all
+  flags-import-skip: [sub_thing]
