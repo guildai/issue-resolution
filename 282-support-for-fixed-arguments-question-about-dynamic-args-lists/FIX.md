@@ -4,7 +4,7 @@ doctest-type: bash
 
 # Fix
 
-    //$ guild check --version '>=0.7.4'
+    $ guild check --version '>=0.7.4.dev1'
     ...
     <exit 0>
 
