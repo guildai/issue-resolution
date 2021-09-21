@@ -1,0 +1,4 @@
+train:
+    main: guild.pass
+    flags-dest: config:prepare-config-output.json
+    flags-import: all
