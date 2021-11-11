@@ -1,0 +1,2 @@
+test-workaround:
+  exec: bash -c "NO_RUN_OUTPUT=1 python -m test > output 2>&1"
