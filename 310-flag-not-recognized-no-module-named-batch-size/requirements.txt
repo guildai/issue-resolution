@@ -1,0 +1,4 @@
+# python==3
+torch==1.9.1+cu111
+pytorch-lightning
+lightning-bolts

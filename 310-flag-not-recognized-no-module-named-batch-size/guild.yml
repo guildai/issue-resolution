@@ -1,0 +1,22 @@
+- model: test-guild
+  sourcecode:
+    - "*.py"
+  operations:
+    train:
+      main: test_guild.main
+      flags-import: no
+      flags:
+        max_steps:
+          default: 2000
+        gpus:
+          default: "1,3"
+
+    train-broken:
+      main: test_guild.main
+      flags-import: no
+      flags:
+        max_steps:
+          default: 2000
+        gpus:
+          default: "1,3"
+          arg-split: ","
