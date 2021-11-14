@@ -1,2 +1,4 @@
 test-workaround:
-  exec: bash -c "NO_RUN_OUTPUT=1 python -m test > output 2>&1"
+  exec: bash -c "python -m test 2>&1 | tee .guild/output"
+  env:
+    NO_RUN_OUTPUT: 1

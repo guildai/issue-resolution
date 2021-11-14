@@ -1,3 +1,7 @@
+---
+doctest-type: bash
+---
+
 # Logging with tqdm results in jumbled output
 
 https://github.com/guildai/guildai/issues/54
@@ -23,14 +27,9 @@ Requirements:
 - guild<=0.7.0.rc9
 - tqdm
 
-Change to this directory and create and activate a new environment:
-
-    $ guild init
-    $ source guild-env
-
 Run `test.py` with Guild:
 
-    $ guild run test.py
+    $ guild run test.py -y  # doctest: +SKIP
 
 With the default flags, the output may be jumped like this:
 
@@ -68,7 +67,10 @@ the `out` flag:
 
 To run all scenarios:
 
-    $ guild run test.py out=[null,default,stderr,stdout,log.txt]
+    $ guild run test.py out=[null,default,stderr,stdout,log.txt] -y # doctest: +SKIP
+    INFO: [guild] Running trial ...: test.py (steps=10, wait=0.01)
+    ...
+    <exit 0>
 
 Use `guild cat --output [RUN]` to view output for a particular
 run. Use `guild cat -p log.txt` to view progress output for the last
@@ -77,16 +79,150 @@ run in the batch.
 Note that when Guild's run output is disabled by setting
 `NO_RUN_OUTPUT` to `1`, output is synchronized.
 
-    $ NO_RUN_OUTPUT=1 guild run test.py -y
+    $ NO_RUN_OUTPUT=1 guild run test.py -y 2>&1 | strings
+    0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    100%|
+    | 10/10 [00:00<00:00, ...it/s]
+    100%|
+    | 10/10 [00:00<00:00, ...it/s]
+    <exit 0>
 
 ## Workarounds
 
-Unfortunately, None if the target stream cannot be `sys.stdout` (as is
-the case with canonical progress logging, which should go to stderr).
+0.7.5.dev1 fixes an issue using `NO_RUN_OUTPUT` in the Guild
+file. Setting this value disables run output for the applicable
+operation.
+
+Below is the operation def in `guild.yml` that runs `test.py` under
+the following modified conditions:
+
+- Run output is disabled by setting the operation env `NO_RUN_OUTPUT`
+  to `1`
+- Stdout and stderr are joined and written to the standard Guild
+  output location (`.guild/output`) using the `tee` program
+
+``` yaml
+test-workaround:
+  exec: bash -c "python -m test 2>&1 | tee .guild/output"
+  env:
+    NO_RUN_OUTPUT: 1
+```
+
+Run the operation (pipe to `strings` to show underlying formatting
+here in output):
+
+    $ guild run test-workaround -y | strings
+    0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    100%|
+    | 10/10 [00:00<00:00, ...it/s]
+    100%|
+    | 10/10 [00:00<00:00, ...it/s]
+    <exit 0>
+
+The output is also written to the standard Guild output location
+(`.guild/output`):
+
+    $ guild cat --output | strings
+    0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    100%|
+    | 10/10 [00:00<00:00, ...it/s]
+    100%|
+    | 10/10 [00:00<00:00, ...it/s]
+    <exit 0>
+
+Verify by showing `.guild/output`:
+
+    $ guild cat -p .guild/output | strings
+    0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    <BLANKLINE>
+      0%|          | 0/10 [00:00<?, ?it/s]
+    100%|
+    | 10/10 [00:00<00:00, ...it/s]
+    100%|
+    | 10/10 [00:00<00:00, ...it/s]
+    <exit 0>
 
 ## Fix
 
-Pending.
+Pending
 
 ## Related Issues
 
