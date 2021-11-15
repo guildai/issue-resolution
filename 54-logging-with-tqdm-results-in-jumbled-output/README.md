@@ -79,32 +79,18 @@ run in the batch.
 Note that when Guild's run output is disabled by setting
 `NO_RUN_OUTPUT` to `1`, output is synchronized.
 
-    $ NO_RUN_OUTPUT=1 guild run test.py -y 2>&1 | strings
-    0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    100%|
-    | 10/10 [00:00<00:00, ...it/s]
-    100%|
-    | 10/10 [00:00<00:00, ...it/s]
+    $ NO_RUN_OUTPUT=1 guild run test.py -y 2>&1 | tr -cd "[:print:]\n"
+    0%|          | 0/10 [00:00<?, ?it/s]                                      0
+      0%|          | 0/10 [00:00<?, ?it/s]                                      1
+      0%|          | 0/10 [00:00<?, ?it/s]                                      2
+      0%|          | 0/10 [00:00<?, ?it/s]                                      3
+      0%|          | 0/10 [00:00<?, ?it/s]                                      4
+      0%|          | 0/10 [00:00<?, ?it/s]                                      5
+      0%|          | 0/10 [00:00<?, ?it/s]                                      6
+      0%|          | 0/10 [00:00<?, ?it/s]                                      7
+      0%|          | 0/10 [00:00<?, ?it/s]                                      8
+      0%|          | 0/10 [00:00<?, ?it/s]                                      9
+      0%|          | 0/10 [00:00<?, ?it/s]100%|| 10/10 [00:00<00:00, ...it/s]100%|| 10/10 [00:00<00:00, ...it/s]
     <exit 0>
 
 ## Workarounds
@@ -131,93 +117,81 @@ test-workaround:
 Run the operation (pipe to `strings` to show underlying formatting
 here in output):
 
-    $ guild run test-workaround -y | strings
+    $ guild run test-workaround -y | tr -cd "[:print:]\n"
     0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    100%|
-    | 10/10 [00:00<00:00, ...it/s]
-    100%|
-    | 10/10 [00:00<00:00, ...it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]100%|| 10/10 [00:00<00:00, ...it/s]100%|| 10/10 [00:00<00:00, ...it/s]
+    0
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
     <exit 0>
 
 The output is also written to the standard Guild output location
 (`.guild/output`):
 
-    $ guild cat --output | strings
+    $ guild cat --output | tr -cd "[:print:]\n"
     0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    100%|
-    | 10/10 [00:00<00:00, ...it/s]
-    100%|
-    | 10/10 [00:00<00:00, ...it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]100%|| 10/10 [00:00<00:00, ...it/s]100%|| 10/10 [00:00<00:00, ...it/s]
+    0
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
     <exit 0>
 
 Verify by showing `.guild/output`:
 
-    $ guild cat -p .guild/output | strings
+    $ guild cat -p .guild/output | tr -cd "[:print:]\n"
     0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    <BLANKLINE>
-      0%|          | 0/10 [00:00<?, ?it/s]
-    100%|
-    | 10/10 [00:00<00:00, ...it/s]
-    100%|
-    | 10/10 [00:00<00:00, ...it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]
+    0%|          | 0/10 [00:00<?, ?it/s]100%|| 10/10 [00:00<00:00, ...it/s]100%|| 10/10 [00:00<00:00, ...it/s]
+    0
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
     <exit 0>
 
 ## Fix
