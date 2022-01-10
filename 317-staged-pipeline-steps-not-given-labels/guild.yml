@@ -1,0 +1,9 @@
+step:
+  exec: echo ${x}
+  flags:
+    x: 123
+
+
+pipeline:
+  steps:
+    - step
