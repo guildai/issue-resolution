@@ -38,7 +38,7 @@ Explicitly quote the string value.
 
 ## Fix
 
-Pending
+Fixed in 0.7.4. See [FIX.md](FIX.md).
 
 ## Related Issues
 
