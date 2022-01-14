@@ -16,6 +16,7 @@ def main():
     print("Creating %s" % issue_dir)
     _makedir(issue_dir)
     _init_readme(data, issue_dir)
+    _init_fix(data, issue_dir)
 
 
 def _init_args():
@@ -55,17 +56,24 @@ def _makedir(path):
         raise SystemExit("error: %s exists" % path)
 
 
-def _init_readme(issue_data, dest):
-    readme_path = os.path.join(dest, "README.md")
-    if os.path.exists(readme_path):
+def _init_readme(issue_data, dest_dir):
+    _copy_template("README.in.md", os.path.join(dest_dir, "README.md"), issue_data)
+
+
+def _init_fix(issue_data, dest_dir):
+    _copy_template("FIX.in.md", os.path.join(dest_dir, "FIX.md"), issue_data)
+
+
+def _copy_template(template_path, dest, data):
+    if os.path.exists(dest):
         raise SystemExit("error: README.md in %s exists" % dest)
-    template = open("TEMPLATE.md").read()
-    readme_src = _apply_issue_to_template(template, issue_data)
-    with open(readme_path, "w") as f:
-        f.write(readme_src)
+    template = open(template_path).read()
+    src = _apply_data_to_template(template, data)
+    with open(dest, "w") as f:
+        f.write(src)
 
 
-def _apply_issue_to_template(template, data):
+def _apply_data_to_template(template, data):
     subs = [
         ("<Title from GitHub Issue>", data["title"]),
         ("<Issue ID>", str(data["number"])),
