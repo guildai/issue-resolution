@@ -18,8 +18,13 @@ Requirements:
 - guild<=<applicable Guild version>
 - See [requirements.txt](requirements.txt)
 
-<Describe the steps to recreate in your own words. Copy and paste as
-needed from the issue or just reference the issue if it's complete.>
+<Use bash commands with doctest patterns to illustrate the
+behavior. If there is an issue, the steps should show the
+incorrect/unexpected behavior. If the issue cannot be recreatd, the
+steps should show the correct/expected behavior. Use `FIX.md` to show
+the steps after a fix has been applied - don't update this section.>
+
+    $ guild check -n --version '<=XXX'
 
 ## Workarounds
 
