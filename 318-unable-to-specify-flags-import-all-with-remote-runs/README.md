@@ -16,6 +16,8 @@ Requirements:
 
 - guild<=0.7.4
 
+Run test op on localhost (required ssh access to localhost):
+
     $ guild run test -r ssh:localhost x=11 y=22 -y
     Building package
     ...
