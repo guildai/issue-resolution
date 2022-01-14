@@ -18,6 +18,8 @@ Requirements:
 
 Run test op on localhost (required ssh access to localhost):
 
+    $ guild check -n --version '<=0.7.5'
+
     $ guild run test -r ssh:localhost x=11 y=22 -y
     Building package
     ...
