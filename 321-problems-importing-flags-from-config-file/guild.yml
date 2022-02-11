@@ -28,6 +28,7 @@
       flags-dest: config:options.yml
       flags-import: all
       flags:
+        # Define type for verbose as it uses a custom type function
         verbose:
           type: boolean
       label: ${some_flag}
