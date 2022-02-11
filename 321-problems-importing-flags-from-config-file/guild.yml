@@ -1,0 +1,45 @@
+- operations:
+    main:
+      description: Example
+      main: main
+      flags-import: all
+      flags:
+        verbose:
+          type: boolean
+      label: ${some_flag}
+      env:
+        PYTHONDONTWRITEBYTECODE: 1
+      requires:
+      - config: config.yml
+      sourcecode:
+        - include:
+          - '*.py'
+          - '*.json'
+          - '*.yml'
+        - exclude:
+            dir:
+              - mlruns
+              - notebooks
+      output-scalars: off
+
+    main2:
+      description: Example 2
+      main: main2
+      flags-dest: config:options.yml
+      flags-import: all
+      flags:
+        verbose:
+          type: boolean
+      label: ${some_flag}
+      env:
+        PYTHONDONTWRITEBYTECODE: 1
+      sourcecode:
+        - include:
+          - '*.py'
+          - '*.json'
+          - '*.yml'
+        - exclude:
+            dir:
+              - mlruns
+              - notebooks
+      output-scalars: off
