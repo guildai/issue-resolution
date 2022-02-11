@@ -40,7 +40,7 @@ Guild's use of `--help` when running the script to detect args.
 ## Fix
 
 The fix must be to `guild.yml` and the main script. See `main2`
-operation in [`guild.yml`](guild.yml) and [`main2.py`].
+operation in [`guild.yml`](guild.yml) and [`main2.py`](main2.py).
 
 The `main2` approach differs from `main` as follows:
 
