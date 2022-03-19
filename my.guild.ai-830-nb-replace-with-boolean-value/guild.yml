@@ -1,0 +1,6 @@
+test:
+  notebook: test.ipynb
+  flags:
+    x:
+      type: boolean
+      nb-replace: x = (.*)
