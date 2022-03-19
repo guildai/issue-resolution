@@ -14,7 +14,6 @@ Guild appears to be working as designed -- see below.
 
 Requirements:
 
-- guild<=<applicable Guild version>
 - See [requirements.txt](requirements.txt)
 
 See [test.ipynb](test.ipynb) for a notebook that requires `nb-replace`

@@ -1,0 +1,8 @@
+test:
+  sourcecode:
+    - exclude: '*.json'
+
+test-broken:
+  main: test
+  sourcecode:
+    -exclude: '*.json'
