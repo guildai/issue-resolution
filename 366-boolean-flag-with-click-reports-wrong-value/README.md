@@ -2,7 +2,7 @@
 doctest-type: bash
 ---
 
-# boolean flag with click reports wrong value 
+# boolean flag with click reports wrong value
 
 https://github.com/guildai/guildai/issues/366
 
@@ -15,35 +15,102 @@ Imported flag values appear to be getting inverted somehow.
 Requirements:
 
 - guild<=0.8.0
-- See [requirements.txt](requirements.txt)
 
-    
-    $ guild run -y args-click-default
-    Flags: 1 1.1 True hello red
-    
-    $ guild run -y args-click-default b=True
+The issue is illustrated by the `args-click-default` operation in the
+[`flags` Guild AI
+example](https://github.com/guildai/guildai/tree/master/examples/flags). The
+applicable code from the example is copied to this project to
+reproduce the issue.
+
+The `args-click-default` operation shows how Guild handles flag values
+imported from a Click based CLI.
+
+The `arg-click-default` operation runs the
+[`args_click.py`](args_click.py) script. When we run this script
+directly in Python, we see the defaults.
+
+    $ python args_click.py
     Flags: 1 1.1 False hello red
 
-    $ guild run -y args-click-default b=False
+Note that the third value (boolean) defaults to False. If we run the
+script with the `--b` option, it sets this value to True.
+
+    $ python args_click.py --b
     Flags: 1 1.1 True hello red
 
-    $ guild run -y args-click-default b=0
+When we run the script with Guild, Guild mistakenly includes the `--b`
+option by default.
+
+    $ guild run args_click.py --print-cmd
+    ??? -um guild.op_main args_click --b --c red --f 1.1 --i 1 --s hello
+
+    $ guild run args_click.py -y
     Flags: 1 1.1 True hello red
 
+Guild appears to correctly import the default value for `b`.
 
-    $ guild run -y args-click-default b=1
-    Flags: 1 1.1 False hello red
+    $ guild run args_click.py --help-op
+    Usage: guild run [OPTIONS] args_click.py [FLAG]...
+    ...
+    Flags:
+      b  sample flag (default is no)
+    ...
+
+This is the same behavior of the `args-click-default` operation, which
+runs `args_click.py`.
+
+    $ guild run args-click-default --print-cmd
+    ??? -um guild.op_main args_click -- --b --c red --f 1.1 --i 1 --s hello
+
+    $ guild run args-click-default -y
+    Flags: 1 1.1 True hello red
+
+    $ guild run args-click-default --help-op
+    Usage: guild run [OPTIONS] args-click-default [FLAG]...
+    ...
+    Flags:
+      b  sample flag (default is no)
+    ...
+
 
 ## Workarounds
 
-Invert logic intentionally, I guess?
+Define the boolean flag and specify `arg-switch: yes`. See
+`args-click-default-workaround` in [`guild.yml`](guild.yml).
+
+In this case, Guild correctly omits the `--b` option by default.
+
+    $ guild run args-click-default-workaround --print-cmd
+    ??? -um guild.op_main args_click -- --c red --f 1.1 --i 1 --s hello
+
+The output for the operation is as expected.
+
+    $ guild run args-click-default-workaround -y
+    Flags: 1 1.1 False hello red
+
+Guild correctly determines the default value.
+
+    $ guild run args-click-default-workaround --help-op
+    Usage: guild run [OPTIONS] args-click-default-workaround [FLAG]...
+    ...
+    Flags:
+      b  sample flag (default is no)
+    ...
+
+Setting b to yes works as expected.
+
+    $ guild run args-click-default-workaround b=yes -y
+    Flags: 1 1.1 True hello red
+
+Setting b to no explicitly works as expected.
+
+    $ guild run args-click-default-workaround b=no -y
+    Flags: 1 1.1 False hello red
 
 ## Fix
 
-<Describe the fix and the release it's available in. If there's no
-thoughts yet to a fix or a fix isn't applicable (e.g. not a bug or
-otherwise decide not to fix) state that here.>
+Pending
 
 ## Related Issues
 
-<List any related issues using their full GitHub URL.>
+- https://github.com/guildai/guildai/issues/124

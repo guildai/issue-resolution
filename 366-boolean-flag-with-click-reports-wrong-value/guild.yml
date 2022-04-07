@@ -1,0 +1,13 @@
+args-click-default:
+  description: Use Click API to define CLI
+  main: args_click
+  flags-dest: args:click
+  flags-import: all
+
+args-click-default-workaround:
+  main: args_click
+  flags-dest: args:click
+  flags-import: all
+  flags:
+    b:
+      arg-switch: yes
