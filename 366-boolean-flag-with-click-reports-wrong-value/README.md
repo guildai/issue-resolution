@@ -41,15 +41,15 @@ script with the `--b` option, it sets this value to True.
 When we run the script with Guild, Guild mistakenly includes the `--b`
 option by default.
 
-    $ guild run args_click.py --print-cmd
+    $ NO_IMPORT_FLAGS_CACHE=1 guild run args_click.py --print-cmd
     ??? -um guild.op_main args_click --b --c red --f 1.1 --i 1 --s hello
 
-    $ guild run args_click.py -y
+    $ NO_IMPORT_FLAGS_CACHE=1 guild run args_click.py -y
     Flags: 1 1.1 True hello red
 
 Guild appears to correctly import the default value for `b`.
 
-    $ guild run args_click.py --help-op
+    $ NO_IMPORT_FLAGS_CACHE=1 guild run args_click.py --help-op
     Usage: guild run [OPTIONS] args_click.py [FLAG]...
     ...
     Flags:
@@ -59,13 +59,13 @@ Guild appears to correctly import the default value for `b`.
 This is the same behavior of the `args-click-default` operation, which
 runs `args_click.py`.
 
-    $ guild run args-click-default --print-cmd
+    $ NO_IMPORT_FLAGS_CACHE=1 guild run args-click-default --print-cmd
     ??? -um guild.op_main args_click -- --b --c red --f 1.1 --i 1 --s hello
 
-    $ guild run args-click-default -y
+    $ NO_IMPORT_FLAGS_CACHE=1 guild run args-click-default -y
     Flags: 1 1.1 True hello red
 
-    $ guild run args-click-default --help-op
+    $ NO_IMPORT_FLAGS_CACHE=1 guild run args-click-default --help-op
     Usage: guild run [OPTIONS] args-click-default [FLAG]...
     ...
     Flags:
@@ -80,17 +80,17 @@ Define the boolean flag and specify `arg-switch: yes`. See
 
 In this case, Guild correctly omits the `--b` option by default.
 
-    $ guild run args-click-default-workaround --print-cmd
+    $ NO_IMPORT_FLAGS_CACHE=1 guild run args-click-default-workaround --print-cmd
     ??? -um guild.op_main args_click -- --c red --f 1.1 --i 1 --s hello
 
 The output for the operation is as expected.
 
-    $ guild run args-click-default-workaround -y
+    $ NO_IMPORT_FLAGS_CACHE=1 guild run args-click-default-workaround -y
     Flags: 1 1.1 False hello red
 
 Guild correctly determines the default value.
 
-    $ guild run args-click-default-workaround --help-op
+    $ NO_IMPORT_FLAGS_CACHE=1 guild run args-click-default-workaround --help-op
     Usage: guild run [OPTIONS] args-click-default-workaround [FLAG]...
     ...
     Flags:
@@ -99,12 +99,12 @@ Guild correctly determines the default value.
 
 Setting b to yes works as expected.
 
-    $ guild run args-click-default-workaround b=yes -y
+    $ NO_IMPORT_FLAGS_CACHE=1 guild run args-click-default-workaround b=yes -y
     Flags: 1 1.1 True hello red
 
 Setting b to no explicitly works as expected.
 
-    $ guild run args-click-default-workaround b=no -y
+    $ NO_IMPORT_FLAGS_CACHE=1 guild run args-click-default-workaround b=no -y
     Flags: 1 1.1 False hello red
 
 ## Fix
