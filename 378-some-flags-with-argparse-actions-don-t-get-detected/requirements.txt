@@ -1,0 +1,2 @@
+# python>=3.9
+guildai<=0.8.0
