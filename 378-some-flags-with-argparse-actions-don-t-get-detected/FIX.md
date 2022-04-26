@@ -23,10 +23,10 @@ Default behavior:
     ??? -um guild.op_main test
 
     $ python test.py
-    Namespace(foo=True, bar=False)
+    bar=False foo=True
 
     $ NO_IMPORT_FLAGS_CACHE=1 guild run test.py -y
-    Namespace(foo=True, bar=False)
+    bar=False foo=True
 
 Set both flags to true:
 
@@ -34,10 +34,10 @@ Set both flags to true:
     ??? -um guild.op_main test --bar
 
     $ python test.py --foo --bar
-    Namespace(foo=True, bar=True)
+    bar=True foo=True
 
     $ NO_IMPORT_FLAGS_CACHE=1 guild run test.py bar=yes foo=yes -y
-    Namespace(foo=True, bar=True)
+    bar=True foo=True
 
 Set both flags to false:
 
@@ -45,7 +45,7 @@ Set both flags to false:
     ??? -um guild.op_main test --no-foo
 
     $ python test.py --no-foo --no-bar
-    Namespace(foo=False, bar=False)
+    bar=False foo=False
 
     $ NO_IMPORT_FLAGS_CACHE=1 guild run test.py bar=no foo=no -y
-    Namespace(foo=False, bar=False)
+    bar=False foo=False

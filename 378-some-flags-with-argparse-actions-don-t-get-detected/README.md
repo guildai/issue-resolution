@@ -36,14 +36,14 @@ Run [`test.py`](test.py) as a baseline.
       --foo, --no-foo
       --bar, --no-bar
 
-    $ venv/bin/python test.py --bar --foo
-    Namespace(foo=True, bar=True)
+    $ venv/bin/python test.py
+    bar=False foo=True
 
     $ venv/bin/python test.py --bar --foo
-    Namespace(foo=True, bar=True)
+    bar=True foo=True
 
     $ venv/bin/python test.py --no-bar --no-foo
-    Namespace(foo=False, bar=False)
+    bar=False foo=False
 
 Show script help using Guild - flags are not imported.
 
