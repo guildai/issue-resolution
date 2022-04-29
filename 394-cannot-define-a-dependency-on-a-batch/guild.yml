@@ -1,0 +1,17 @@
+op:
+  exec: touch ${name}
+  flags:
+    name:
+      required: yes
+
+summary:
+  exec: ls
+  requires:
+    operation: op+
+    name: batch
+
+summary2:
+  exec: ls
+  requires:
+    operation: op\+
+    name: batch
