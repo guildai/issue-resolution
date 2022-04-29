@@ -93,9 +93,9 @@ batch run.
     <exit 0>
 
 We can't verify in these tests that the runs for `a`, `b`, and `c` are
-available in the latest run (`summary`op) but we can list all of the
-files and show that there are three available in three distinct
-directories.
+available in the latest run (`summary`op) due to randomly generated
+run IDs. However, we can list all of the files and show that there are
+three files in three distinct directories.
 
     $ guild ls -Ln
     .../
@@ -109,4 +109,4 @@ directories.
 
 Fix Guild's run resolution logic to work with batch runs. The behavior
 of run selection should be kept in sync with the behavior implemented
-in `guild select.
+in `guild select`.
