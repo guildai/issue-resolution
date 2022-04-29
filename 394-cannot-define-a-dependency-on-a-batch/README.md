@@ -8,9 +8,6 @@ https://github.com/guildai/guildai/issues/394
 
 ## Problem
 
-OP title has evolved a bit - this topic involves using batches to run
-work and then define a dependency on that batch.
-
 The goal is to require a batch run as a dependency. There's an issue
 with Guild, as of 0.8.0, that makes this a bit challenging. See
 *Recreating* below for details.
