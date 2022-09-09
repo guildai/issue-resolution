@@ -1,0 +1,18 @@
+default:
+  description: Default behavior for output scalars
+  main: test
+
+exclude-pattern:
+  description: Exclude scalars using a general pattern
+  main: test
+  output-scalars: '([^ \t\[\]]+): (\value)'
+
+exclude-names:
+  description: Exclude scalars with specified names
+  main: test
+  output-scalars: '^(?!foo|bar)(\key): (\value)'
+
+exclude-names-and-pattern:
+  description: Exclude scalars with specified names and a general pattern
+  main: test
+  output-scalars: '^(?!foo|bar)([^ \t\[\]]+): (\value)'
