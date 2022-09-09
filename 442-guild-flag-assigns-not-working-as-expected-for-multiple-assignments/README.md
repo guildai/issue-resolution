@@ -21,7 +21,7 @@ Requirements:
 
 Guild correctly infers the flag `x` and default value `2`.
 
-    $ guild run test.py --help-op
+    $ NO_IMPORT_FLAGS_CACHE=1 guild run test.py --help-op  # doctest: +REPORT_UDIFF
     Usage: guild run [OPTIONS] test.py [FLAG]...
     <BLANKLINE>
     Use 'guild run --help' for a list of options.
@@ -31,15 +31,15 @@ Guild correctly infers the flag `x` and default value `2`.
 
 This value is provided by default in the underlying Python command.
 
-    $ guild run test.py --print-cmd
+    $ NO_IMPORT_FLAGS_CACHE=1 guild run test.py --print-cmd
     ??? -um guild.op_main test --x 2
 
-    $ guild run test.py x=3 --print-cmd
+    $ NO_IMPORT_FLAGS_CACHE=1 guild run test.py x=3 --print-cmd
     ??? -um guild.op_main test --x 3
 
-However, Guild modifies the first assignment
+However, Guild modifies the first assignment.
 
-    $ guild run test.py x=3 -y
+    $ NO_IMPORT_FLAGS_CACHE=1 guild run test.py x=3 -y
     x=3
     x=2
 
