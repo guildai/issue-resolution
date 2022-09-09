@@ -1,0 +1,14 @@
+plain-class-global:
+  main: test
+  flags-import: all
+  flags-dest: global:cfg
+
+plain-class-namespace:
+  main: test
+  flags-import: all
+  flags-dest: namespace:cfg
+
+namespace:
+  main: test
+  flags-import: all
+  flags-dest: namespace:cfg2
