@@ -10,41 +10,66 @@ import urllib.request
 
 def main():
     args = _init_args()
-    print("Getting GitHub issue %i" % args.issue_number)
-    data = _get_issue_data(args)
-    issue_dir = _issue_dir(data)
-    print("Creating %s" % issue_dir)
-    _makedir(issue_dir)
-    _init_readme(data, issue_dir)
-    _init_fix(data, issue_dir)
+    _handler_for_issue(args.issue)(args)
 
 
 def _init_args():
     p = argparse.ArgumentParser()
-    p.add_argument("issue_number", metavar="NUM", help="Issue number.", type=int)
+    p.add_argument(
+        "issue", metavar="NUM_OR_URL", help="Issue number or my.guild.ai URL."
+    )
 
     return p.parse_args()
 
 
-def _get_issue_data(args):
-    resp = urllib.request.urlopen(
-        "http://api.github.com/repos/guildai/guildai/issues/%i" % args.issue_number
-    )
-    return json.load(resp)
+def _handler_for_issue(issue):
+    if issue.startswith("https://my.guild.ai/"):
+        return _handle_my_guild_ai_issue
+    else:
+        try:
+            int(issue)
+        except ValueError:
+            raise SystemExit(
+                "NUM_OR_URL myst be a GitHub issue number of "
+                "a URL starting with 'http://my.guild.ai/'"
+            )
+        else:
+            return _handle_github_issue
 
 
-def _issue_dir(issue_data):
-    number = issue_data["number"]
-    title = _issue_dir_title(issue_data["title"])
-    return "%i-%s" % (number, title)
+def _handle_my_guild_ai_issue(args):
+    issue_url = args.issue
+    print(f"Getting {issue_url}")
+    data = _my_guild_ai_topic_data(issue_url)
+    issue_dir = _my_guild_ai_issue_dir(data)
+    print(f"Creating {issue_dir}")
+    _makedir(issue_dir)
+    _init_readme(issue_dir, data)
+    _init_fix(issue_dir, data)
 
 
-def _issue_dir_title(issue_title):
-    return _strip_dashes(re.sub(r"[^a-z0-9]+", "-", issue_title.lower()))
+def _my_guild_ai_topic_data(issue_url):
+    try:
+        resp = urllib.request.urlopen(f"{issue_url}.json")
+    except Exception as e:
+        raise SystemExit(f"Error getting data for {issue_url}: {e}")
+    else:
+        data = json.load(resp)
+        data["url"] = issue_url
+        return data
 
 
-def _strip_dashes(s):
-    return s.strip("-")
+def _my_guild_ai_issue_dir(data):
+    issue_url = data["url"]
+    m = re.match(r"https://my.guild.ai/t/([^/]+)/([0-9/]+)", data["url"])
+    if not m:
+        raise SystemExit(
+            "Unsupported URL for my.guild.ai - expected "
+            "https://my.guild.ai/t/<name>/<number>"
+        )
+    name = m.group(1)
+    numbers = m.group(2).replace("/", "-")
+    return f"my.guild.ai-{numbers}-{name}"
 
 
 def _makedir(path):
@@ -56,17 +81,17 @@ def _makedir(path):
         raise SystemExit("error: %s exists" % path)
 
 
-def _init_readme(issue_data, dest_dir):
+def _init_readme(dest_dir, issue_data):
     _copy_template("README.in.md", os.path.join(dest_dir, "README.md"), issue_data)
 
 
-def _init_fix(issue_data, dest_dir):
+def _init_fix(dest_dir, issue_data):
     _copy_template("FIX.in.md", os.path.join(dest_dir, "FIX.md"), issue_data)
 
 
 def _copy_template(template_path, dest, data):
     if os.path.exists(dest):
-        raise SystemExit("error: README.md in %s exists" % dest)
+        raise SystemExit(f"error: README.md in {dest} exists")
     template = open(template_path).read()
     src = _apply_data_to_template(template, data)
     with open(dest, "w") as f:
@@ -75,13 +100,51 @@ def _copy_template(template_path, dest, data):
 
 def _apply_data_to_template(template, data):
     subs = [
-        ("<Title from GitHub Issue>", data["title"]),
-        ("<Issue ID>", str(data["number"])),
+        ("<Issue Title>", data["title"]),
+        ("<Issue URL>", data["url"]),
     ]
     applied = template
     for s, repl in subs:
         applied = applied.replace(s, repl)
     return applied
+
+
+def _handle_github_issue(args):
+    issue_number = int(args.issue)
+    print("Getting GitHub issue %i" % issue_number)
+    data = _github_issue_data(issue_number)
+    issue_dir = _github_issue_dir(data)
+    print("Creating %s" % issue_dir)
+    _makedir(issue_dir)
+    _init_readme(issue_dir, data)
+    _init_fix(issue_dir, data)
+
+
+def _github_issue_data(issue_number):
+    try:
+        resp = urllib.request.urlopen(
+            "http://api.github.com/repos/guildai/guildai/issues/%i" % issue_number
+        )
+    except Exception as e:
+        raise SystemExit(f"Error getting data for GitHub issue {issue_number}: {e}")
+    else:
+        data = json.load(resp)
+        data["url"] = f"https://github.com/guildai/guildai/issues/{issue_number}"
+        return data
+
+
+def _github_issue_dir(issue_data):
+    number = issue_data["number"]
+    title = _issue_dir_title(issue_data["title"])
+    return "%i-%s" % (number, title)
+
+
+def _issue_dir_title(issue_title):
+    return _strip_dashes(re.sub(r"[^a-z0-9]+", "-", issue_title.lower()))
+
+
+def _strip_dashes(s):
+    return s.strip("-")
 
 
 if __name__ == "__main__":

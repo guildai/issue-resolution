@@ -2,9 +2,9 @@
 doctest-type: bash
 ---
 
-# <Title from GitHub Issue>
+# <Issue Title>
 
-https://github.com/guildai/guildai/issues/<Issue ID>
+<Issue URL>
 
 ## Problem
 
