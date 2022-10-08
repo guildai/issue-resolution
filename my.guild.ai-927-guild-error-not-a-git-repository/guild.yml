@@ -1,0 +1,18 @@
+test-without-repo:
+  description: Does not include the git repo - will fail
+  main: test
+
+test-with-repo:
+  description: Includes a copy of the git repo as a dependency
+  main: test
+  requires:
+    - file: ../.git
+      name: git-repo
+
+test-with-repo-2:
+  description: Includes the git repo but as a link rather than a copy
+  main: test
+  requires:
+    - file: ../.git
+      target-type: link
+      name: git-repo
