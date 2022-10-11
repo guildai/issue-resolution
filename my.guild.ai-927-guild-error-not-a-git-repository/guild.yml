@@ -7,6 +7,7 @@ test-with-repo:
   main: test
   requires:
     - file: ../.git
+      # target-type is copy by default
       name: git-repo
 
 test-with-repo-2:
