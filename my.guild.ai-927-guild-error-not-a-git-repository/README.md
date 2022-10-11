@@ -13,10 +13,6 @@ in the run directory.
 
 ## Recreating
 
-Requirements:
-
-- guild<=<applicable Guild version>
-
 Running the test without the git repo dependency fails.
 
     $ guild run test-without-repo -y
@@ -44,7 +40,7 @@ at the expense of time and disk space).
 
 ## Workarounds
 
-The behavior is by design - see [guild.yml](guild.yml) for advice on
+The behavior is by design - see [`guild.yml`](guild.yml) for advice on
 configuring an operation for access to the git repo.
 
 ## Fix
