@@ -1,0 +1,4 @@
+test-exec:
+  exec: python test.py
+  sourcecode:
+    dest: .

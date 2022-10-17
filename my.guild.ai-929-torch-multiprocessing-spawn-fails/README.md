@@ -11,7 +11,8 @@ https://my.guild.ai/t/torch-multiprocessing-spawn-fails/929
 A Python script that uses `torch.multiprocessing` cannot be run with
 Guild.
 
-We're researching the underlying cause/issue.
+The issues appears to be related to Guild's loading of main modules
+from `op_main`. See **Workarounds** below for a way around this.
 
 ## Recreating
 
@@ -32,7 +33,24 @@ When run with Guild:
 
 ## Workarounds
 
-Pending
+The code runs successfully using Guild's `exec` spec. See
+the `test-exec` operation in [`guild.yml`](guild.yml).
+
+    $ cat guild.yml | grep test-exec -A3
+    test-exec:
+      exec: python test.py
+      sourcecode:
+        dest: .
+
+    $ guild run test-exec -y
+    Hello (0, 1, ['foo', 'bar'])
+
+    $ guild runs info
+    id: ...
+    operation: test-exec
+    from: ...
+    status: completed
+    ...
 
 ## Fix
 
