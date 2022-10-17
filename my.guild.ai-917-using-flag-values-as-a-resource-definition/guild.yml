@@ -1,0 +1,9 @@
+test:
+  flags:
+    resource:
+      description: A required file
+      required: yes
+
+  requires:
+    - file: ${resource}
+      name: resource
