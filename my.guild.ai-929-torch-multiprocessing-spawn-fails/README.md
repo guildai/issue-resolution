@@ -36,11 +36,9 @@ When run with Guild:
 The code runs successfully using Guild's `exec` spec. See
 the `test-exec` operation in [`guild.yml`](guild.yml).
 
-    $ cat guild.yml | grep test-exec -A3
+    $ cat guild.yml | grep test-exec -A1
     test-exec:
-      exec: python test.py
-      sourcecode:
-        dest: .
+      exec: python .guild/sourcecode/test.py
 
     $ guild run test-exec -y
     Hello (0, 1, ['foo', 'bar'])

@@ -1,4 +1,2 @@
 test-exec:
-  exec: python test.py
-  sourcecode:
-    dest: .
+  exec: python .guild/sourcecode/test.py
