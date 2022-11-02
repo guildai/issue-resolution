@@ -126,5 +126,5 @@ Guild should resolve flags explicitly defined in the Guild file before
 importing flags as those initial flag values can influence where Guild imports
 flags from.
 
-Additionally, the configuration required to pull this off is nearly black magic
-levels! Guild should make this MUCH easier.
+Additionally, the [configuration](guild.yml) required to pull this off is
+nearly black magic levels! Guild should make this MUCH easier.
