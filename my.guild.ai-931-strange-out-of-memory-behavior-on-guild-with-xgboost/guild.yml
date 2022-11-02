@@ -1,0 +1,4 @@
+test:
+  exec: python .guild/sourcecode/test.py
+  output-scalars: off
+  plugins: off

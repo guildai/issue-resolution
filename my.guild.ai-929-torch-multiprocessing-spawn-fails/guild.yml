@@ -1,2 +1,5 @@
 test-exec:
   exec: python .guild/sourcecode/test.py
+
+test-module:
+  main: test

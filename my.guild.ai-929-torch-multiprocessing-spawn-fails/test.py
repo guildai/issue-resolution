@@ -1,7 +1,6 @@
 import torch
 
-def main_worker(*args):
-    print("Hello", args)
+from impl import main_worker
 
 n_gpus = 1
 args = ["foo", "bar"]

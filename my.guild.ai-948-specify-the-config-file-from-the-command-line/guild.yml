@@ -1,0 +1,51 @@
+test-basic:
+  description: >-
+    Basic use of 'flag-dest: config:<file>'
+
+  main: test
+  flags-dest: config:config.yml
+  flags-import: all
+
+test-basic-with-flag:
+  description: >-
+    Ability to specify a different config file
+
+    This does not work as expected because Guild imports default flag values
+    from 'config.yml' and replaces the values from any specified config file.
+
+  main: test
+  flags-dest: config:config.yml
+  flags-import: all
+  flags:
+    config:
+      description: Config file to use
+    msg:
+      description: Message to print
+  requires:
+    config: config.yml
+    flag-name: config
+    rename: config.yml
+
+test-without-flag-import:
+  description: >-
+    Define user-configurable flags in the Guild file without importing
+
+  main: test
+  # Flags are not imported by default - i.e. 'flags-import' is 'no' here.
+  flags:
+    config:
+      description: Config file to use
+    msg:
+      description: Message to print
+  requires:
+    config: config.yml
+    flag-name: config
+    rename: config.yml
+
+# test:
+#   flags-dest: config:config-1.yml
+#   flags-import: all
+#   requires:
+#     - config: config-1.yml
+#       flag-name: config
+#       rename: config.yml
