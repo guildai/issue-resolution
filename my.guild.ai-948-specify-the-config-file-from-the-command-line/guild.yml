@@ -16,7 +16,7 @@ test-basic-with-flag:
   main: test
   flags-dest: config:config.yml
   flags-import: all
-  # Flags def here provide descriptions - these are purely cosmetic.
+  # Flag defs here provide descriptions - these are purely cosmetic.
   flags:
     config:
       description: Config file to use
