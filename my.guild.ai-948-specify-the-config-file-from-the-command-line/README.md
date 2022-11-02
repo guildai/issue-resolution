@@ -107,7 +107,7 @@ The value for `msg` here is defined in [`config-2.yml`](config-2.yml).
     $ cat config-2.yml
     msg: hola
 
-Finally, we can override the value for 'msg' even when specifying a different
+Finally, we can override the value for `msg` even when specifying a different
 config file.
 
     $ guild run test-without-flag-import config=config-2.yml msg=whoop -y
