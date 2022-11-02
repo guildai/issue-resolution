@@ -71,7 +71,7 @@ file and then use those values when it resolves a file for flag imports.
 As a workaround, we need to disable flag imports and define any
 command-line-modifiable flags explicitly in the Guild file.
 
-The [`test-without-flag-import`](guild.yml#L29-L45) operation does this.
+The [`test-without-flag-import`](guild.yml#L30-L45) operation does this.
 
     $ guild run test-without-flag-import --help-op
     ...
