@@ -102,7 +102,7 @@ We can also change the config file used.
     Using config-2.yml for config resource
     hola
 
-The value for `msg` here is defined in [`config-2.yml`].
+The value for `msg` here is defined in [`config-2.yml`](config-2.yml).
 
     $ cat config-2.yml
     msg: hola
