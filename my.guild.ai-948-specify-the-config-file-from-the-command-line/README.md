@@ -34,7 +34,7 @@ file`](config.yml) specified in the Guild file. This corresponds to the OP.
 
 ### Enable a flag for the config
 
-The operation [`test-basic-with-flag`](guild.yml#L9-L29) exposes the config
+The operation [`test-basic-with-flag`](guild.yml#L9-L28) exposes the config
 file as a flag.
 
     $ guild run test-basic-with-flag --help-op
