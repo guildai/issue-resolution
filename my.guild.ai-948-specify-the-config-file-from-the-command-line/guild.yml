@@ -41,11 +41,3 @@ test-without-flag-import:
     config: config.yml
     flag-name: config
     rename: config.yml
-
-# test:
-#   flags-dest: config:config-1.yml
-#   flags-import: all
-#   requires:
-#     - config: config-1.yml
-#       flag-name: config
-#       rename: config.yml

@@ -20,8 +20,8 @@ These tests should be run with Guild 0.8.2 or earlier.
 
 ### Basic example
 
-The [`test-basic`](guild.yml#L1-L7) operation uses the config file specified in
-the Guild file. This corresponds to the OP.
+The [`test-basic`](guild.yml#L1-L7) operation uses the [`config
+file`'](config.yml) specified in the Guild file. This corresponds to the OP.
 
     $ guild run test-basic --help-op
     ...
@@ -35,7 +35,8 @@ the Guild file. This corresponds to the OP.
 
 ### Enable a flag for the config
 
-The operation 'test-basic-with-flag' exposes the config file as a flag.
+The operation [`test-basic-with-flag`](guild.yml#L9-L27) exposes the config
+file as a flag.
 
     $ guild run test-basic-with-flag --help-op
     ...
@@ -52,26 +53,26 @@ The operation 'test-basic-with-flag' exposes the config file as a flag.
     Using config-2.yml for config resource
     hello
 
-Note this is NOT what we expect --- we expect to get the flag values from
-`config-2.yml`:
+Note this is NOT what we expect -- we expect to get the flag values from
+[`config-2.yml`](config-2.yml):
 
     $ cat config-2.yml
     msg: hola
 
-Instead we got the flag values defined in `config.yml` because those values are
-imported and then written to the run directory when the config resource is
-resolved.
+Instead we got the flag values defined in [`config.yml`](config.yml) because
+those values are imported and then written to the run directory when the config
+resource is resolved.
 
 ## Workarounds
 
-The core problem is that Guild uses the Guild file specified config file when
+The underlying problem is that Guild uses Guild-file-specified config file when
 it imports flag values. It ought to first resolve flags defined in the Guild
-file and then use those values when it resolves a config file for imports.
+file and then use those values when it resolves a file for flag imports.
 
-As a workaround, we need to disable flag imports and define any command line
-modifiable flags explicitly in the Guild file.
+As a workaround, we need to disable flag imports and define any
+command-line-modifiable flags explicitly in the Guild file.
 
-The 'test-without-flag-import' operation does this.
+The [`test-without-flag-import`](guild.yml#L29-L43) operation does this.
 
     $ guild run test-without-flag-import --help-op
     ...
@@ -83,13 +84,13 @@ The flags here are defined explicitly in the Guild file -- they aren't
 imported.
 
 When we run the operation without any flags, we get the config defined in
-'config.yml'.
+[`config.yml`](config.yml).
 
     $ guild run test-without-flag-import -y
     Resolving config
     hello
 
-We can change the value for 'msg' on the command line as expected.
+We can change the value for `msg` on the command line as expected.
 
     $ guild run test-without-flag-import msg=whoop -y
     Resolving config
@@ -102,7 +103,7 @@ We can also change the config file used.
     Using config-2.yml for config resource
     hola
 
-The value for 'msg' here is defined in 'config-2.yml'.
+The value for `msg` here is defined in [`config-2.yml`].
 
     $ cat config-2.yml
     msg: hola
