@@ -21,13 +21,12 @@ These tests should be run with Guild 0.8.2 or earlier.
 ### Basic example
 
 The [`test-basic`](guild.yml#L1-L7) operation uses the [`config
-file`'](config.yml) specified in the Guild file. This corresponds to the OP.
+file`](config.yml) specified in the Guild file. This corresponds to the OP.
 
     $ guild run test-basic --help-op
     ...
     Flags:
       msg  (default is hello)
-    <exit 0>
 
     $ guild run test-basic -y
     Resolving config:config.yml
@@ -35,7 +34,7 @@ file`'](config.yml) specified in the Guild file. This corresponds to the OP.
 
 ### Enable a flag for the config
 
-The operation [`test-basic-with-flag`](guild.yml#L9-L27) exposes the config
+The operation [`test-basic-with-flag`](guild.yml#L9-L29) exposes the config
 file as a flag.
 
     $ guild run test-basic-with-flag --help-op
@@ -72,7 +71,7 @@ file and then use those values when it resolves a file for flag imports.
 As a workaround, we need to disable flag imports and define any
 command-line-modifiable flags explicitly in the Guild file.
 
-The [`test-without-flag-import`](guild.yml#L29-L43) operation does this.
+The [`test-without-flag-import`](guild.yml#L29-L45) operation does this.
 
     $ guild run test-without-flag-import --help-op
     ...

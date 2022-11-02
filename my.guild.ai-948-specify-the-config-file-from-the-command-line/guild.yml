@@ -16,6 +16,7 @@ test-basic-with-flag:
   main: test
   flags-dest: config:config.yml
   flags-import: all
+  # Flags def here provide descriptions - these are purely cosmetic.
   flags:
     config:
       description: Config file to use
@@ -31,7 +32,8 @@ test-without-flag-import:
     Define user-configurable flags in the Guild file without importing
 
   main: test
-  # Flags are not imported by default - i.e. 'flags-import' is 'no' here.
+  # Flags are not imported by default - i.e. 'flags-import' is 'no' here. These
+  # flag defs are required - they are not cosmetic.
   flags:
     config:
       description: Config file to use
