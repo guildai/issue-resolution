@@ -20,8 +20,8 @@ These tests should be run with Guild 0.8.2 or earlier.
 
 ### Basic example
 
-The 'test-basic' operation uses the config file specified in the Guild
-file. This corresponds to the OP.
+The [`test-basic`](guild.yml#L1-L7) operation uses the config file specified in
+the Guild file. This corresponds to the OP.
 
     $ guild run test-basic --help-op
     ...
