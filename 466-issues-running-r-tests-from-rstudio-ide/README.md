@@ -52,10 +52,9 @@ Run `test.R` with Guild.
     >
 
 Note that the plugin runs the script using R's `echo` feature. This
-might be surprising for users when claim that using Guild is
-essentially a drop-in replacement for running a script with
-`Rscript`. This might be something we enable with an option but
-otherwise leave off by default.
+might be surprising for users if we claim that Guild is essentially a
+drop-in replacement for `Rscript`. This might be something we enable
+with an option but otherwise leave off by default.
 
 For example:
 
@@ -66,7 +65,7 @@ guild run test.R --echo -y  # and equivalent --no-echo to disable
 Note also that `R_LIBS` is resolved as an absolute path in the command
 above. This is required as Guild changes the current working directory
 to the run directory. The R plugin might rewrite `R_LIBS` (and any
-other path-related environment variables used by R) with an absolutel
+other path-related environment variables used by R) with an absolute
 path for the run.
 
 When we run the script using a relative path for `R_LIBS` the
