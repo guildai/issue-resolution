@@ -1,0 +1,31 @@
+#!/bin/bash
+
+## Install guild into standalone virtual env
+/usr/bin/python3 -m venv ~/.local/share/r-guildai
+~/.local/share/r-guildai/bin/python -m pip install --upgrade --no-user pip wheel setuptools
+~/.local/share/r-guildai/bin/python -m pip install --upgrade --no-user https://api.github.com/repos/guildai/guildai/tarball/HEAD
+
+## Setup dummy proj
+mkdir dummy-proj
+cd dummy-proj
+cat << 'EOF' > guild.yml
+
+my-op:
+  exec: echo Hello World!
+  flags:
+    x: 1
+
+EOF
+
+
+
+# my-op batch run succeeds
+~/.local/share/r-guildai/bin/guild run --yes my-op x=[2,3]
+
+
+# activate some virtual env
+/usr/bin/python3 -m venv my-venv
+. my-venv/bin/activate
+
+# now my-op batch run fails
+~/.local/share/r-guildai/bin/guild run --yes my-op x=[2,3]

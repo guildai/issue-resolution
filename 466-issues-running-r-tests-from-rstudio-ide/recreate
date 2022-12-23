@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Create a virtual env for Guild
+
+test -d guild-app-env || (
+    python -m venv guild-app-env &&
+    guild-app-env/bin/python -m pip install --upgrade pip &&
+    guild-app-env/bin/python -m pip install \
+      https://api.github.com/repos/guildai/guildai/tarball/HEAD
+  )
+
+
+
+# Create a project env
+
+test -d project-env || (
+    python -m venv project-env &&
+    guild-app-env/bin/python -m pip install --upgrade pip
+  )
