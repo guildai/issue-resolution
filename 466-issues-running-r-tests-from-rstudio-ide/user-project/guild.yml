@@ -1,0 +1,4 @@
+user-op:
+  exec: echo 'Hello World!'
+  flags:
+    x: 1
