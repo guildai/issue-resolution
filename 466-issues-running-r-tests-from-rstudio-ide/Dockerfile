@@ -6,8 +6,8 @@ RUN apt-get -y install python3 python3-venv python-is-python3 git
 
 # checkout guild from the last commit prior to the patch that fixes this
 # install it as a standalone app
-RUN git clone 'https://github.com/guildai/guildai'
-RUN git -C guildai checkout ef8fe41339813a1150dd280b64f2f089b341c3a4
+RUN git clone 'https://github.com/guildai/guildai' --depth 1
+# RUN git -C guildai checkout ef8fe41339813a1150dd280b64f2f089b341c3a4
 
 RUN python3 -m venv /opt/guild-app
 RUN /opt/guild-app/bin/python -m pip install --upgrade pip
