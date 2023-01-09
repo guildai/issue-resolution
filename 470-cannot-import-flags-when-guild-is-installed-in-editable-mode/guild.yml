@@ -1,0 +1,8 @@
+test:
+  main: guild.pass
+  flags-dest: args
+  flags:
+    msg: guild.pass runs fine
+
+test2:
+  main: test
