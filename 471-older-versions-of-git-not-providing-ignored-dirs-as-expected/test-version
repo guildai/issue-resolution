@@ -1,0 +1,45 @@
+#!/bin/bash
+
+set -ue
+
+version=${1:?:usage: ./test-version VERSION}
+echo "Testing Git version ${version}"
+
+remote_tar=https://mirrors.edge.kernel.org/pub/software/scm/git/git-${version}.tar.gz
+local_dir=git-${version}
+local_tar=git-${version}.tar.gz
+local_test_repo=test-repo-${version}
+
+# Get and unpack source code
+test ! -d ${local_dir} && (
+    test ! -f ${local_tar} && wget --no-verbose ${remote_tar} && tar xf ${local_tar}
+)
+
+# Build Git
+test ! -f ${local_dir}/git && (
+    cd ${local_dir} && ./configure && make
+)
+
+# Init test repo
+test ! -d ${local_test_repo} && (
+ mkdir -p ${local_test_repo}
+ ${local_dir}/git -C ${local_test_repo} init
+ mkdir ${local_test_repo}/implicit
+ touch ${local_test_repo}/implicit/foo.txt
+ mkdir ${local_test_repo}/ignored
+ touch ${local_test_repo}/ignored/bar.txt
+ cat > ${local_test_repo}/.gitignore <<EOF
+*.txt
+ignored
+EOF
+)
+
+# Test ls-files command
+echo "git ls-files -ioc --exclude-standard --directory"
+echo "------------------------------------------------"
+${local_dir}/git -C ${local_test_repo} ls-files -ioc --exclude-standard --directory
+echo ""
+
+echo "git ls-files -ioc --exclude-standard"
+echo "------------------------------------"
+${local_dir}/git -C ${local_test_repo} ls-files -ioc --exclude-standard
