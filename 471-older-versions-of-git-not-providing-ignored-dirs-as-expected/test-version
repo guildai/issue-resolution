@@ -4,6 +4,7 @@ set -ue
 
 version=${1:?:usage: ./test-version VERSION}
 echo "Testing Git version ${version}"
+echo ""
 
 remote_tar=https://mirrors.edge.kernel.org/pub/software/scm/git/git-${version}.tar.gz
 local_dir=git-${version}
@@ -33,6 +34,16 @@ test ! -d ${local_test_repo} && (
 ignored
 EOF
 )
+
+echo "Project layout"
+echo "--------------"
+( cd ${local_test_repo} && find . | grep -v .git/ )
+echo ""
+
+echo ".gitignore"
+echo "----------"
+cat ${local_test_repo}/.gitignore
+echo ""
 
 # Test ls-files command
 echo "git ls-files -ioc --exclude-standard --directory"
