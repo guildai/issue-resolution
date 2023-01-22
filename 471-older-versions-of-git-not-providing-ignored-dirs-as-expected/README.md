@@ -11,8 +11,8 @@ https://github.com/guildai/guildai/issues/471
 Guild cannot rely on a single command for listing ignores on older
 versions of Git.
 
-This project provides a test utility for examining the output of `git
-ls-files` to test behavior for a specific version.
+This project provides a [test utility](test-version) for examining the
+output of `git ls-files` to test behavior for a specific version.
 
 Git `2.31.0` exhibits the OLD behavior.
 
