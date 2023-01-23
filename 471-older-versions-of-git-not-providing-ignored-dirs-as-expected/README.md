@@ -55,7 +55,7 @@ Clear the test projects.
     unexpected output for ls-files:
     <exit 1>
 
-### `2.32.0` NEW behavior
+### `2.32.0` - NEW behavior
 
     $ ./test-version 2.32.0  # doctest: +REPORT_UDIFF
     Testing Git version 2.32.0...
@@ -89,7 +89,7 @@ Clear the test projects.
     warning: templates not found in ...
     git-ls-files is ok (git version 2.32.0; .../git-2.32.0/git)
 
-Git `2.39.0` exhibits the NEW behavior.
+### `2.39.0` - NEW behavior
 
     $ ./test-version 2.39.0  # doctest: +REPORT_UDIFF
     Testing Git version 2.39.0...
