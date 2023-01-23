@@ -14,11 +14,14 @@ versions of Git.
 This project provides a [test utility](test-version) for examining the
 output of `git ls-files` to test behavior for a specific version.
 
+The *NEW* (desired) behavior is available in Git 2.32 and later. The
+tests below show this.
+
 Clear the test projects.
 
     $ rm -rf test-repo*
 
-Git `2.31.0` exhibits the OLD behavior.
+### `2.31.0` - OLD behavior
 
     $ ./test-version 2.31.0  # doctest: +REPORT_UDIFF
     Testing Git version 2.31.0...
@@ -46,7 +49,13 @@ Git `2.31.0` exhibits the OLD behavior.
     ignored/bar.txt
     implicit/foo.txt
 
-Git `2.32.0` exhibits the NEW behavior.
+    $ PATH=$(realpath git-2.31.0):$PATH guild check --external git-ls-files
+    warning: templates not found in ...
+    guild: git-ls-files NOT OK (git version 2.31.0; .../git-2.31.0/git)
+    unexpected output for ls-files:
+    <exit 1>
+
+### `2.32.0` NEW behavior
 
     $ ./test-version 2.32.0  # doctest: +REPORT_UDIFF
     Testing Git version 2.32.0...
@@ -75,6 +84,10 @@ Git `2.32.0` exhibits the NEW behavior.
     ------------------------------------
     ignored/bar.txt
     implicit/foo.txt
+
+    $ PATH=$(realpath git-2.32.0):$PATH guild check --external git-ls-files
+    warning: templates not found in ...
+    git-ls-files is ok (git version 2.32.0; .../git-2.32.0/git)
 
 Git `2.39.0` exhibits the NEW behavior.
 
@@ -105,3 +118,7 @@ Git `2.39.0` exhibits the NEW behavior.
     ------------------------------------
     ignored/bar.txt
     implicit/foo.txt
+
+    $ PATH=$(realpath git-2.39.0):$PATH guild check --external git-ls-files
+    warning: templates not found in ...
+    git-ls-files is ok (git version 2.39.0; .../git-2.39.0/git)
