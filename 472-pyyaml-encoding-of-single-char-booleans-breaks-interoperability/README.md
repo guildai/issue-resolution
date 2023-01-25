@@ -10,7 +10,7 @@ https://github.com/guildai/guildai/issues/472
 
 PyYAML saves single string boolean chars without quotes.
 
-*This issue is [FIXED](FIX.md)*
+See [`FIX.md`](FIX.md) for a resolution of this issue.
 
 ## Recreating
 
@@ -29,8 +29,8 @@ intends when saving these values.
 
 Each character must be quoted to encode it as a string value.
 
-This behavior manifests in Guild's saved attributes. The `op.py`
-module defines two flags: `x` and `y`.
+This behavior manifests in Guild's saved attributes. The
+[`op.py`](op.py) script defines two flags: `x` and `y`.
 
     $ guild run op.py -y
     1 + 2 = 3

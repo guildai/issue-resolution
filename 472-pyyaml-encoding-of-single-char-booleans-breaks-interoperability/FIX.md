@@ -5,7 +5,7 @@ doctest-type: bash
 # Fix
 
 The required patch for serialization is illustrated in
-`yaml_patched.py`.
+[`yaml_patched.py`](yaml_patched.py).
 
     $ python yaml_patched.py
     'n'
@@ -13,8 +13,8 @@ The required patch for serialization is illustrated in
     'N'
     'Y'
 
-When this behavior is applied in Guild, flags for `op.py` are saved
-with the correct quoting of single-char booleans.
+When this behavior is applied in Guild, flags for [`op.py`](op.py) are
+saved with the correct quoting of single-char booleans.
 
     $ guild run op.py -y
     1 + 2 = 3
