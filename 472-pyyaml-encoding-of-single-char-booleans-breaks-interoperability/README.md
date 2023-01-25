@@ -10,6 +10,8 @@ https://github.com/guildai/guildai/issues/472
 
 PyYAML saves single string boolean chars without quotes.
 
+*This issue is [FIXED](FIX.md)*
+
 ## Recreating
 
 Default YAML encoding of the chars `n`, `y`, `N`, and `Y` (strings):
@@ -114,3 +116,5 @@ forward or presented downsides.
 
 Option 1 would appear to solve the underlying problem without
 downsides.
+
+See [`FIX.md`](FIX.md) for working example of patched library.
