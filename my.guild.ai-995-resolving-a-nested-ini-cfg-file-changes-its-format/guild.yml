@@ -1,0 +1,4 @@
+test:
+  main: guild.pass
+  flags-dest: config:test.ini
+  flags-import: yes
