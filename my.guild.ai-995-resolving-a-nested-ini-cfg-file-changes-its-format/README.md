@@ -65,13 +65,7 @@ does not preserve the section names as originally provided in
 
     $ guild cat -p test.ini
     [ingredients]
-    carbs =
-      {'make':
-        {'water':
-          {'add_miso': True,
-           'container': 'cooking pot',
-           'temp': 100}},
-     'type': 'noodles'}
+    carbs = {'make': {'water': {'add_miso': True, 'container': 'cooking pot', 'temp': 100}}, 'type': 'noodles'}
     greens = cabbage
     meat = {'marbled': True, 'type': 'pork belly'}
 
