@@ -22,7 +22,16 @@ Requirements:
 behavior. If there is an issue, the steps should show the
 incorrect/unexpected behavior. If the issue cannot be recreatd, the
 steps should show the correct/expected behavior. Use `FIX.md` to show
-the steps after a fix has been applied - don't update this section.>
+the steps after a fix has been applied - don't update this section.
+
+To run this file as a test, use:
+
+   guild check -nt README.md
+
+To run the fix:
+
+    guild check -nt FIX.md
+>
 
     $ guild check -n --version '<=XXX'
 
