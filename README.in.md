@@ -24,14 +24,12 @@ incorrect/unexpected behavior. If the issue cannot be recreatd, the
 steps should show the correct/expected behavior. Use `FIX.md` to show
 the steps after a fix has been applied - don't update this section.
 
-To run this file as a test, use:
+To run this file as a test, use `guild check -t README.md`
 
-   guild check -nt README.md
+To run the fix use `guild check -t FIX.md`.
 
-To run the fix:
-
-    guild check -nt FIX.md
->
+Confirm we're running the version of Guild that replicates the
+reported behavior.
 
     $ guild check -n --version '<=XXX'
 
