@@ -1,0 +1,13 @@
+train:
+      flags-dest: config:embeddings_and_difficulty/configs_hydra/config.yaml
+      flags-import: all
+      flags:
+        label_type: test
+      sourcecode:
+        - exclude: embeddings_and_difficulty/data
+      requires:
+        - resource: data
+        - config: embeddings_and_difficulty/configs_hydra/config.yaml
+          target-path: .guild/sourcecode/embeddings_and_difficulty/configs_hydra
+          replace-existing: yes
+      main: runner
