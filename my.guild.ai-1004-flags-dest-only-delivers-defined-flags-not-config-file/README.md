@@ -18,37 +18,39 @@ Requirements:
 
 - guild<=0.9.0
 
-<Use bash commands with doctest patterns to illustrate the
-behavior. If there is an issue, the steps should show the
-incorrect/unexpected behavior. If the issue cannot be recreatd, the
-steps should show the correct/expected behavior. Use `FIX.md` to show
-the steps after a fix has been applied - don't update this section.
-
-To run this file as a test, use `guild check -t README.md`
-
-To run the fix use `guild check -t FIX.md`.
-
 Confirm we're running the version of Guild that replicates the
 reported behavior.
 
     $ guild check -n --version '<=0.9.0'
     <exit 0>
 
-We run `train` with using this command.
+`train` is configured to use
+`embeddings_and_difficulty/configs_hydra/config.yaml` for the flags
+dest. Flags are imported from that configuration file.
 
-    $ guild run train data=test -y
+    $ guild run train --help-op
+    Usage: guild run [OPTIONS] train [FLAG]...
+    <BLANKLINE>
+    Use 'guild run --help' for a list of options.
+    <BLANKLINE>
+    Flags:
+      data  (default is test)
 
-## Workarounds
+Run with the default value for `data`.
 
-<Describe any way the issue can be worked-around without the
-fix. State if there are no known work-arounds.>
+    $ guild run train -y
+    Resolving config:embeddings_and_difficulty/configs_hydra/config.yaml
+    data: test
 
-## Fix
+Run with a different value for `data`.
 
-<Describe the fix and the release it's available in. If there's no
-thoughts yet to a fix or a fix isn't applicable (e.g. not a bug or
-otherwise decide not to fix) state that here.>
+    $ guild run train data=xxx -y
+    Resolving config:embeddings_and_difficulty/configs_hydra/config.yaml
+    data: xxx
 
-## Related Issues
+Note that the Hydra enabled application loads the new value for `data`.
 
-<List any related issues using their full GitHub URL.>
+The generated config file contains the new flags value.
+
+    $ guild cat -p embeddings_and_difficulty/configs_hydra/config.yaml
+    data: xxx

@@ -4,4 +4,12 @@ doctest-type: bash
 
 # Fix
 
-The fix for [this issue](https://my.guild.ai/t/flags-dest-only-delivers-defined-flags-not-config-file/1004) is pending.
+This may not technically be a fix for the user issue but it does
+demonstrate an improvement to Guild based on the issue.
+
+`train-2` omits the otherwise required dependency config
+`target-path`.
+
+    $ guild run train-2 data=yyy -y
+    Resolving config:embeddings_and_difficulty/configs_hydra/config.yaml
+    data: test

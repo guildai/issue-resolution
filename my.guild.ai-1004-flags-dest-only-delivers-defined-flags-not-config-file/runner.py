@@ -3,7 +3,7 @@ from omegaconf import DictConfig, OmegaConf
 
 @hydra.main(
     version_base=None,
-    config_path='configs_hydra',
+    config_path='embeddings_and_difficulty/configs_hydra',
     config_name='config.yaml',
 )
 def main(args: DictConfig):
