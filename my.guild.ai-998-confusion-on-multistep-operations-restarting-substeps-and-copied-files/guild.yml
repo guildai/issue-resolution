@@ -1,0 +1,42 @@
+- config: defaults
+  flags:
+    fail: no
+
+- operations:
+    prepare:
+      main: op
+      flags:
+        $include: defaults
+
+    train:
+      main: op
+      flags:
+        $include: defaults
+      requires:
+        - operation: prepare
+          warn-if-empty: no
+
+    test:
+      main: op
+      flags:
+        $include: defaults
+      requires:
+        - operation: train
+          warn-if-empty: no
+
+    pipeline:
+      # requires:
+      #   - operation: test
+      #     ##always-run: yes
+
+      flags:
+        prepare-fail: yes
+
+      steps:
+        - prepare fail=${prepare-fail}
+
+        #- train fail=no
+        #- test
+
+  operation-defaults:
+    flags-dest: globals
