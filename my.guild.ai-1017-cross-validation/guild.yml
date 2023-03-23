@@ -1,0 +1,20 @@
+prepare: {}
+
+train:
+  flags-import: all
+  requires:
+    - operation: prepare
+      target-type: link
+
+summarize: {}
+ # requires:
+ #   - operation: train
+ #     multi-run: yes
+ #     summary-format: json
+
+pipeline:
+  steps:
+    - prepare
+    - train k=5 fold=[1,2,3,4,5]
+    - summarize
+  delete-on-success: yes
