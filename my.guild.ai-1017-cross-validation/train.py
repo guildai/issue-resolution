@@ -10,14 +10,13 @@ print("Loading iris data")
 X = np.load("X.npy")
 y = np.load("y.npy")
 
+print(f"Using fold {fold} of {k}")
 kf = model_selection.KFold(n_splits=k)
 train, test = list(kf.split(X))[fold - 1]
 X_train, X_test = X[train], X[test]
 y_train, y_test = y[train], y[test]
 
-#from sklearn.model_selection import train_test_split
-#X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=0)
-
+print("Training model")
 clf = svm.SVC(kernel="linear", C=1)
 clf.fit(X_train, y_train)
 score = clf.score(X_test, y_test)

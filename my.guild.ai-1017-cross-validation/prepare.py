@@ -5,8 +5,6 @@ import numpy as np
 print("Loading iris dataset")
 X, y = datasets.load_iris(return_X_y=True)
 
-print("Writing X.npy")
+print("Writing iris data as X.npy and y.npy")
 np.save("X.npy", X)
-
-print("Writing y.npy")
 np.save("y.npy", y)

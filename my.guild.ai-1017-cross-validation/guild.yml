@@ -1,16 +1,27 @@
-prepare: {}
+prepare:
+  description: Prepare Iris data set for training
 
 train:
-  flags-import: all
+  description: Train SVC on a particular CV fold
+  flags-import: [k, fold]
   requires:
     - operation: prepare
       target-type: link
 
-summarize: {}
- # requires:
- #   - operation: train
- #     multi-run: yes
- #     summary-format: json
+summarize:
+  description:
+    Summarize multiple train operations
+
+    Note this is a simulated summary that relies on runs.json. Future
+    versions of Guild will support generating runs.json as a dependency.
+
+  # Example of a possible spelling of runs data dependency:
+
+  # requires:
+  #   - runs-data: scalars
+  #     select: train
+  #     name: runs.json
+  #     link-runs: no
 
 pipeline:
   steps:
