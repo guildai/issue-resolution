@@ -30,7 +30,7 @@ def _handler_for_issue(issue):
             int(issue)
         except ValueError:
             raise SystemExit(
-                "NUM_OR_URL myst be a GitHub issue number of "
+                "NUM_OR_URL must be a GitHub issue number or "
                 "a URL starting with 'http://my.guild.ai/'"
             )
         else:
