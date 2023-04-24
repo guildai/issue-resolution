@@ -9,8 +9,8 @@ https://github.com/guildai/guildai/issues/479
 ## Problem
 
 Running guild for R with `--test-sourcecode` and a path containing subdirectories
-(`guild run --test-sourcecode subdir-a/subdir-b/train.R`) causes guild to try to copy
-from a path that does not exist (`Copying from 'subdir-a/subdir-b/subdir-a/subdir-b'`).
+(`guild run --test-sourcecode subdir/train.R`) causes guild to try to copy
+from a path that does not exist (`Copying from 'subdir/subdir'`).
 
 ## Recreating
 
@@ -28,40 +28,10 @@ reported behavior.
 
     $ guild check -n --version '<=0.9.0'
 
-Create and initialize the project that surfaces the problem.
+Test sourcecode copy for `subdir/train.R`.
 
-    $ mkdir -p ex-proj
-    
-    $ cd ex-proj
-
-    $ mkdir -p subdir-a/subdir-b
-
-    $ touch    subdir-a/subdir-b/train.py
-
-    $ touch    subdir-a/subdir-b/train.R
-
-Running `train.py` works as expected.
-
-    $ guild run --test-sourcecode subdir-a/subdir-b/train.py
-    Copying from the current directory
-    Rules:
-      exclude dir .guild
-      exclude dir * containing .guild-nocopy
-      exclude dir .git
-      gitignore + guildignore patterns
-      exclude .git*, .guildignore
-    Selected for copy:
-      subdir-a/subdir-b/train.R
-      subdir-a/subdir-b/train.py
-    Skipped:
-
-Note: running `guild run subdir-a/subdir-b/train.py` (without `--test-sourcecode`)
-causes the program to hang.
-
-Run the R script, which fails to copy any files as it looks under the wrong path.
-
-    $ guild run --test-sourcecode subdir-a/subdir-b/train.R
-    Copying from 'subdir-a/subdir-b/subdir-a/subdir-b'
+    $ guild run --test-sourcecode subdir/train.R
+    Copying from 'subdir/subdir'
     Rules:
       exclude dir .guild
       exclude dir * containing .guild-nocopy
@@ -72,13 +42,36 @@ Run the R script, which fails to copy any files as it looks under the wrong path
     Skipped:
     <exit 0>
 
+Note:
+
+- copying from `subdir/subdir` which does not exist
+- nothing is selected for copy
+
+However, when we test sourcecode copy for `subdir/train.R` from the current directory,
+guild selects the expected files for copy.
+
+    $ guild run --test-sourcecode train.R
+    Copying from the current directory
+    Rules:
+      exclude dir .guild
+      exclude dir * containing .guild-nocopy
+      exclude dir .git
+      gitignore + guildignore patterns
+      exclude .git*, .guildignore
+    Selected for copy:
+      FIX.md
+      README.md
+      train.R
+      subdir/train.R
+    Skipped:
+
 Display the op data returned by the R plugin.
 
-    $ Rscript -e 'guildai:::emit_r_script_guild_data("subdir-a/subdir-b/train.R")'
-    name: subdir-a/subdir-b/train.R
-    flags-dest: subdir-a/subdir-b/train.R
+    $ Rscript -e 'guildai:::emit_r_script_guild_data("subdir/train.R")'
+    name: subdir/train.R
+    flags-dest: subdir/train.R
     flags: {}
-    exec: '''/usr/lib/R/bin/Rscript'' -e ''guildai:::do_guild_run("subdir-a/subdir-b/train.R")'''
+    exec: '''/usr/lib/R/bin/Rscript'' -e ''guildai:::do_guild_run("subdir/train.R")'''
 
 ## Workarounds
 
@@ -86,8 +79,4 @@ There are no known workarounds.
 
 ## Fix
 
-TODO: Fix, WIP
-
-It appears the path is being calculated correctly for python scripts, but not R scripts.
-The current approach for a fix is targeted at comparing these two paths to catch the
-discrepancy.
+Fix is [here](https://github.com/guildai/guildai/commit/0f91e1e0).
