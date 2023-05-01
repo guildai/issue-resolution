@@ -10,10 +10,14 @@ https://my.guild.ai/t/confusion-on-multistep-operations-restarting-substeps-and-
 
 This issue needs to clarify some of Guild's behavior:
 
-- Links vs copies when running steps
-- Links vs copies when resolving upstream run dependencies
-- Parent run status updates when child step runs are subsequently
-  re-run and completed
+1. Links vs copies when running steps
+2. Links vs copies when resolving upstream run dependencies
+3. Parent run status updates when child step runs are subsequently
+   re-run and completed
+
+This document demonstrates Guild's behavior regarding topic 3. Topics
+1 and 2 are covered by the latest `run-files` built-in test (see
+https://github.com/guildai/guildai/commit/0d14a69da).
 
 ## Recreating
 
