@@ -4,6 +4,10 @@ doctest-type: bash
 
 # Fix
 
+Verify the Guild version.
+
+    $ guild check -n --version '>=0.9.0.dev1'
+
 Delete runs associated with this project.
 
     $ guild runs rm -y -Ft my.guild.ai-998

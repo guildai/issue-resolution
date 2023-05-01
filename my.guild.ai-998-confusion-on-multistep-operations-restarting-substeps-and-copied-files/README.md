@@ -27,6 +27,8 @@ Requirements:
 
 - guild<=0.9.0
 
+Verify the Guild version.
+
     $ guild check -n --version '<=0.9.0'
 
 Delete runs associated with this project.
