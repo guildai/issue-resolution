@@ -43,6 +43,11 @@ Fix the failed prepare step manually.
     [1]  prepare   completed  fail=no
     [2]  pipeline  error
 
+Note that this does not affect the pipeline status. There is not way
+to change a pipeline status by changing a step status manually. The
+pipeline must be restarted and successfully run each step to be
+completed.
+
 Restart the pipeline with the `--needed` option. The pipeline skips
 the prepare step because it is completed and its flag values are not
 changed. It runs train, which fails.
