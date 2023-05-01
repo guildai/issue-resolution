@@ -16,7 +16,9 @@ This issue needs to clarify some of Guild's behavior:
    re-run and completed
 
 This document demonstrates Guild's behavior regarding topic 3. Topics
-1 and 2 are covered by the latest `run-files` built-in test (see
+1 and 2 are covered by the latest
+[`run-files`](https://github.com/guildai/guildai/blob/main/guild/tests/run-files.md)
+built-in test (see
 https://github.com/guildai/guildai/commit/0d14a69da).
 
 ## Recreating
