@@ -71,6 +71,11 @@ Fix the failed train step manually.
     $ guild run --restart `guild select -Fo train` fail=no -y
     Running train
 
+    $ guild runs -s -Ft my.guild.ai-998
+    [1]  train     completed  fail=no
+    [2]  pipeline  error
+    [3]  prepare   completed  fail=no
+
 Restart the pipeline with the `--needed` option.
 
     $ guild run --restart `guild select -Fo pipeline` --needed -y
