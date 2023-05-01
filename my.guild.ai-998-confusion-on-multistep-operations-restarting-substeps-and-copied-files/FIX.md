@@ -76,16 +76,15 @@ Fix the failed train step manually.
     [2]  pipeline  error
     [3]  prepare   completed  fail=no
 
-Restart the pipeline with the `--needed` option.
+Restart the pipeline with the `--needed` option. The pipeline
+operation skips both steps because they're already completed. The
+pipeline status is updated to `completed`.
 
     $ guild run --restart `guild select -Fo pipeline` --needed -y
     INFO: [guild] restarting prepare: ... --needed
     Skipping run because flags have not changed (--needed specified)
     INFO: [guild] restarting train: ... --needed
     Skipping run because flags have not changed (--needed specified)
-
-The pipeline operation skips both steps because they're already
-completed. The pipeline status is updated to `completed`.
 
     $ guild runs -s -Ft my.guild.ai-998
     [1]  pipeline  completed
