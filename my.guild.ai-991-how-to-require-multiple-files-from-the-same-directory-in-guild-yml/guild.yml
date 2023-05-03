@@ -1,0 +1,39 @@
+train-project-files:
+  description: Copies specific npy files
+  exec: ls -lR
+  requires:
+    - file: data/01.npy
+    - file: data/02.npy
+
+train-project-dir:
+  description: Copies data dir
+  exec: ls -lR
+  requires:
+    - file: data
+
+prepare-dataset:
+  exec: bash -c "touch data.npy && ls -lR"  # simulate creation of a dataset
+
+train-prepared:
+  exec: ls -lR
+  requires:
+    - operation: prepare-dataset
+      name: dataset
+
+copy-dataset:
+  exec: ls -lR
+  flags:
+    name:
+      description: Name of dataset to use
+      required: yes
+  requires:
+    - file: data/${name}
+      rename: ${name} data.npy
+      name: dataset
+
+train-copied:
+  exec: ls -lR
+  requires:
+    - operation: copy-dataset
+      name: dataset
+      select: data.npy
