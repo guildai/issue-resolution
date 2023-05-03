@@ -9,9 +9,16 @@ Windows specific.
 
 ## Recreating
 
+NOTE: This test deviates from the typical test format and uses Python
+doctest, rather than bash. We need to parse output from a command
+below and so use `run_capture`, which is not possible using the bash
+doctest type.
+
 Requirements:
 
 - guild<=0.9.0
+
+Check expected Guild version.
 
     >>> run("guild check -n --version '<=0.9.0'")
     <exit 0>
