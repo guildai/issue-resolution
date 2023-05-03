@@ -66,8 +66,10 @@ set files in a run, those files are independent of the project.
 
 The project illustrates two different patterns:
 
-- Prepare a dataset from scratch
-- Copy a dataset from a project file to a run
+- Generate a dataset from scratch
+- Copy a dataset from a project file to a run for later reuse
+
+### Generate data set from scratch
 
 `prepare-dataset` generates a `data.npy` file. In a real world
 example, this operation could be parameterized using flags or
@@ -105,6 +107,8 @@ data set file.
     ... data.npy -> ../.../data.npy
     ... guild.yml
     ... README.md
+
+### Copy project data files to a run for later reuse
 
 If a data set already exists in a project, it can be used with this
 pattern by copying it to a run using a file dependency. `copy-dataset`
