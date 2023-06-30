@@ -1,0 +1,7 @@
+test-broken:
+  output-scalars:
+    - loss: (?P<loss>\value) (?P<step>\step)
+
+test-fixed:
+  output-scalars:
+    - loss: (?P<loss>) (?P<step>\step)
