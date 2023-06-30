@@ -87,17 +87,17 @@ class MyDataModule(LightningDataModule):
 
     def train_dataloader(self):
         return DataLoader(
-            MyDataset(self.train, self.train_true), batch_size=10, num_workers=7
+            MyDataset(self.train, self.train_true), batch_size=10, num_workers=99
         )
 
     def val_dataloader(self):
         return DataLoader(
-            MyDataset(self.val, self.val_true), batch_size=10, num_workers=7
+            MyDataset(self.val, self.val_true), batch_size=10, num_workers=99
         )
 
     def test_dataloader(self):
         return DataLoader(
-            MyDataset(self.test, self.test_true), batch_size=10, num_workers=7
+            MyDataset(self.test, self.test_true), batch_size=10, num_workers=99
         )
 
 
@@ -143,7 +143,8 @@ if __name__ == "__main__":
         ),
     )
     scaling_config = ScalingConfig(
-        num_workers=4, use_gpu=True, resources_per_worker={"CPU": 7, "GPU": 1}
+        ##num_workers=4, use_gpu=True, resources_per_worker={"CPU": 7, "GPU": 1}
+        num_workers=1, use_gpu=True, resources_per_worker={"CPU": 16, "GPU": 1}
     )
 
     search_lightning_config = LightningConfigBuilder().module(**search_config).build()
