@@ -1,0 +1,191 @@
+2023-07-01 07:36:36.866442: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2023-07-01 07:36:36.890998: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-07-01 07:36:37.246751: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+INFO: [torch.distributed.nn.jit.instantiator] Created a temporary directory at /tmp/tmpigdbr98n
+INFO: [torch.distributed.nn.jit.instantiator] Writing /tmp/tmpigdbr98n/_remote_module_non_scriptable.py
+INFO: [ray.tune.impl.tuner_internal] A `RunConfig` was passed to both the `Tuner` and the `LightningTrainer`. The run config passed to the `Tuner` is the one that will be used.
+2023-07-01 07:36:39,491	INFO worker.py:1625 -- Started a local Ray instance.
+2023-07-01 07:36:40,087	INFO tune.py:218 -- Initializing Ray automatically. For cluster usage or custom Ray initialization, call `ray.init(...)` before `Tuner(...)`.
+== Status ==
+Current time: 2023-07-01 07:36:41 (running for 00:00:01.44)
+Using AsyncHyperBand: num_stopped=0
+Bracket: Iter 4.000: None | Iter 2.000: None | Iter 1.000: None
+Logical resource usage: 8.0/20 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:RTX)
+Result logdir: /home/garrett/.guild/runs/aca3d6526c03439d8503f4d418d8b9c0/ray_results/mwe
+Number of trials: 2/2 (1 PENDING, 1 RUNNING)
++------------------------------+----------+----------------------+------------------------+
+| Trial name                   | status   | loc                  |   lightning_config/_mo |
+|                              |          |                      |    dule_init_config/lr |
+|------------------------------+----------+----------------------+------------------------|
+| LightningTrainer_ed5a9_00000 | RUNNING  | 192.168.1.206:799019 |             0.00279928 |
+| LightningTrainer_ed5a9_00001 | PENDING  |                      |             0.00513599 |
++------------------------------+----------+----------------------+------------------------+
+
+
+[2m[36m(RayTrainWorker pid=799099)[0m 2023-07-01 07:36:42,795	INFO config.py:86 -- Setting up process group for: env:// [rank=0, world_size=1]
+[2m[36m(RayTrainWorker pid=799099)[0m /home/garrett/Code/guild-issues/my.guild.ai-1050-guild-interfering-with-distributed-resource-allocation-pytorch-lightning-ray-tune/.venv/lib/python3.10/site-packages/torch/cuda/__init__.py:546: UserWarning: Can't initialize NVML
+[2m[36m(RayTrainWorker pid=799099)[0m   warnings.warn("Can't initialize NVML")
+[2m[36m(RayTrainWorker pid=799099)[0m GPU available: True (cuda), used: True
+[2m[36m(RayTrainWorker pid=799099)[0m TPU available: False, using: 0 TPU cores
+[2m[36m(RayTrainWorker pid=799099)[0m IPU available: False, using: 0 IPUs
+[2m[36m(RayTrainWorker pid=799099)[0m HPU available: False, using: 0 HPUs
+[2m[36m(RayTrainWorker pid=799099)[0m You are using a CUDA device ('NVIDIA RTX A1000 Laptop GPU') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2m[36m(RayTrainWorker pid=799099)[0m Missing logger folder: /home/garrett/.guild/runs/aca3d6526c03439d8503f4d418d8b9c0/mwe
+[2m[36m(RayTrainWorker pid=799099)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2m[36m(RayTrainWorker pid=799099)[0m 
+[2m[36m(RayTrainWorker pid=799099)[0m   | Name | Type    | Params
+[2m[36m(RayTrainWorker pid=799099)[0m ---------------------------------
+[2m[36m(RayTrainWorker pid=799099)[0m 0 | loss | MSELoss | 0     
+[2m[36m(RayTrainWorker pid=799099)[0m 1 | fc1  | Linear  | 55    
+[2m[36m(RayTrainWorker pid=799099)[0m 2 | fc2  | Linear  | 60    
+[2m[36m(RayTrainWorker pid=799099)[0m ---------------------------------
+[2m[36m(RayTrainWorker pid=799099)[0m 115       Trainable params
+[2m[36m(RayTrainWorker pid=799099)[0m 0         Non-trainable params
+[2m[36m(RayTrainWorker pid=799099)[0m 115       Total params
+[2m[36m(RayTrainWorker pid=799099)[0m 0.000     Total estimated model params size (MB)
+[2m[36m(RayTrainWorker pid=799099)[0m 2023-07-01 07:36:44.253096: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[2m[36m(RayTrainWorker pid=799099)[0m /home/garrett/Code/guild-issues/my.guild.ai-1050-guild-interfering-with-distributed-resource-allocation-pytorch-lightning-ray-tune/.venv/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/logger_connector/result.py:432: PossibleUserWarning: It is recommended to use `self.log('val/loss', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+[2m[36m(RayTrainWorker pid=799099)[0m   warning_cache.warn(
+[2m[36m(RayTrainWorker pid=799099)[0m /home/garrett/Code/guild-issues/my.guild.ai-1050-guild-interfering-with-distributed-resource-allocation-pytorch-lightning-ray-tune/.venv/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:280: PossibleUserWarning: The number of training batches (8) is smaller than the logging interval Trainer(log_every_n_steps=50). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+[2m[36m(RayTrainWorker pid=799099)[0m   rank_zero_warn(
+Result for LightningTrainer_ed5a9_00000:
+  _report_on: train_epoch_end
+  date: 2023-07-01_07-36-46
+  done: false
+  epoch: 0
+  hostname: apache
+  iterations_since_restore: 1
+  node_ip: 192.168.1.206
+  pid: 799019
+  should_checkpoint: true
+  step: 8
+  time_since_restore: 4.791827440261841
+  time_this_iter_s: 4.791827440261841
+  time_total_s: 4.791827440261841
+  timestamp: 1688215006
+  train/loss: 0.480129599571228
+  training_iteration: 1
+  trial_id: ed5a9_00000
+  val/loss: 0.40802401304244995
+  
+== Status ==
+Current time: 2023-07-01 07:36:46 (running for 00:00:06.25)
+Using AsyncHyperBand: num_stopped=0
+Bracket: Iter 4.000: None | Iter 2.000: None | Iter 1.000: -0.40802401304244995
+Logical resource usage: 8.0/20 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:RTX)
+Current best trial: ed5a9_00000 with val/loss=0.40802401304244995 and parameters={'lightning_config': {'_module_init_config': {'lr': 0.002799278522512412}, '_trainer_init_config': {}, '_trainer_fit_params': {}, '_ddp_strategy_config': {}, '_model_checkpoint_config': {}}}
+Result logdir: /home/garrett/.guild/runs/aca3d6526c03439d8503f4d418d8b9c0/ray_results/mwe
+Number of trials: 2/2 (1 PENDING, 1 RUNNING)
++------------------------------+----------+----------------------+------------------------+--------+------------------+--------------+------------+---------+
+| Trial name                   | status   | loc                  |   lightning_config/_mo |   iter |   total time (s) |   train/loss |   val/loss |   epoch |
+|                              |          |                      |    dule_init_config/lr |        |                  |              |            |         |
+|------------------------------+----------+----------------------+------------------------+--------+------------------+--------------+------------+---------|
+| LightningTrainer_ed5a9_00000 | RUNNING  | 192.168.1.206:799019 |             0.00279928 |      1 |          4.79183 |      0.48013 |   0.408024 |       0 |
+| LightningTrainer_ed5a9_00001 | PENDING  |                      |             0.00513599 |        |                  |              |            |         |
++------------------------------+----------+----------------------+------------------------+--------+------------------+--------------+------------+---------+
+
+
+Result for LightningTrainer_ed5a9_00000:
+  _report_on: train_epoch_end
+  date: 2023-07-01_07-36-48
+  done: true
+  epoch: 4
+  hostname: apache
+  iterations_since_restore: 5
+  node_ip: 192.168.1.206
+  pid: 799019
+  should_checkpoint: true
+  step: 40
+  time_since_restore: 6.488592147827148
+  time_this_iter_s: 0.422011137008667
+  time_total_s: 6.488592147827148
+  timestamp: 1688215007
+  train/loss: 0.16710205376148224
+  training_iteration: 5
+  trial_id: ed5a9_00000
+  val/loss: 0.1602104753255844
+  
+Trial LightningTrainer_ed5a9_00000 completed.
+[2m[36m(RayTrainWorker pid=799099)[0m `Trainer.fit` stopped: `max_epochs=5` reached.
+[2m[36m(RayTrainWorker pid=805155)[0m 2023-07-01 07:36:50,789	INFO config.py:86 -- Setting up process group for: env:// [rank=0, world_size=1]
+[2m[36m(RayTrainWorker pid=805155)[0m /home/garrett/Code/guild-issues/my.guild.ai-1050-guild-interfering-with-distributed-resource-allocation-pytorch-lightning-ray-tune/.venv/lib/python3.10/site-packages/torch/cuda/__init__.py:546: UserWarning: Can't initialize NVML
+[2m[36m(RayTrainWorker pid=805155)[0m   warnings.warn("Can't initialize NVML")
+[2m[36m(RayTrainWorker pid=805155)[0m GPU available: True (cuda), used: True
+[2m[36m(RayTrainWorker pid=805155)[0m TPU available: False, using: 0 TPU cores
+[2m[36m(RayTrainWorker pid=805155)[0m IPU available: False, using: 0 IPUs
+[2m[36m(RayTrainWorker pid=805155)[0m HPU available: False, using: 0 HPUs
+[2m[36m(RayTrainWorker pid=805155)[0m You are using a CUDA device ('NVIDIA RTX A1000 Laptop GPU') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[2m[36m(RayTrainWorker pid=805155)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2m[36m(RayTrainWorker pid=805155)[0m 
+[2m[36m(RayTrainWorker pid=805155)[0m   | Name | Type    | Params
+[2m[36m(RayTrainWorker pid=805155)[0m ---------------------------------
+[2m[36m(RayTrainWorker pid=805155)[0m 0 | loss | MSELoss | 0     
+[2m[36m(RayTrainWorker pid=805155)[0m 1 | fc1  | Linear  | 55    
+[2m[36m(RayTrainWorker pid=805155)[0m 2 | fc2  | Linear  | 60    
+[2m[36m(RayTrainWorker pid=805155)[0m ---------------------------------
+[2m[36m(RayTrainWorker pid=805155)[0m 115       Trainable params
+[2m[36m(RayTrainWorker pid=805155)[0m 0         Non-trainable params
+[2m[36m(RayTrainWorker pid=805155)[0m 115       Total params
+[2m[36m(RayTrainWorker pid=805155)[0m 0.000     Total estimated model params size (MB)
+[2m[36m(RayTrainWorker pid=805155)[0m 2023-07-01 07:36:52.239451: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+== Status ==
+Current time: 2023-07-01 07:36:53 (running for 00:00:13.01)
+Using AsyncHyperBand: num_stopped=1
+Bracket: Iter 4.000: -0.21034686267375946 | Iter 2.000: -0.3374544680118561 | Iter 1.000: -0.40802401304244995
+Logical resource usage: 8.0/20 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:RTX)
+Current best trial: ed5a9_00000 with val/loss=0.1602104753255844 and parameters={'lightning_config': {'_module_init_config': {'lr': 0.002799278522512412}, '_trainer_init_config': {}, '_trainer_fit_params': {}, '_ddp_strategy_config': {}, '_model_checkpoint_config': {}}}
+Result logdir: /home/garrett/.guild/runs/aca3d6526c03439d8503f4d418d8b9c0/ray_results/mwe
+Number of trials: 2/2 (1 RUNNING, 1 TERMINATED)
++------------------------------+------------+----------------------+------------------------+--------+------------------+--------------+------------+---------+
+| Trial name                   | status     | loc                  |   lightning_config/_mo |   iter |   total time (s) |   train/loss |   val/loss |   epoch |
+|                              |            |                      |    dule_init_config/lr |        |                  |              |            |         |
+|------------------------------+------------+----------------------+------------------------+--------+------------------+--------------+------------+---------|
+| LightningTrainer_ed5a9_00001 | RUNNING    | 192.168.1.206:805068 |             0.00513599 |        |                  |              |            |         |
+| LightningTrainer_ed5a9_00000 | TERMINATED | 192.168.1.206:799019 |             0.00279928 |      5 |          6.48859 |     0.167102 |    0.16021 |       4 |
++------------------------------+------------+----------------------+------------------------+--------+------------------+--------------+------------+---------+
+
+
+[2m[36m(RayTrainWorker pid=805155)[0m /home/garrett/Code/guild-issues/my.guild.ai-1050-guild-interfering-with-distributed-resource-allocation-pytorch-lightning-ray-tune/.venv/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/logger_connector/result.py:432: PossibleUserWarning: It is recommended to use `self.log('val/loss', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+[2m[36m(RayTrainWorker pid=805155)[0m   warning_cache.warn(
+[2m[36m(RayTrainWorker pid=805155)[0m /home/garrett/Code/guild-issues/my.guild.ai-1050-guild-interfering-with-distributed-resource-allocation-pytorch-lightning-ray-tune/.venv/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:280: PossibleUserWarning: The number of training batches (8) is smaller than the logging interval Trainer(log_every_n_steps=50). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+[2m[36m(RayTrainWorker pid=805155)[0m   rank_zero_warn(
+Result for LightningTrainer_ed5a9_00001:
+  _report_on: train_epoch_end
+  date: 2023-07-01_07-36-54
+  done: true
+  epoch: 0
+  hostname: apache
+  iterations_since_restore: 1
+  node_ip: 192.168.1.206
+  pid: 805068
+  should_checkpoint: true
+  step: 8
+  time_since_restore: 4.798119306564331
+  time_this_iter_s: 4.798119306564331
+  time_total_s: 4.798119306564331
+  timestamp: 1688215014
+  train/loss: 0.5055351257324219
+  training_iteration: 1
+  trial_id: ed5a9_00001
+  val/loss: 0.42308664321899414
+  
+Trial LightningTrainer_ed5a9_00001 completed.
+== Status ==
+Current time: 2023-07-01 07:36:54 (running for 00:00:14.26)
+Using AsyncHyperBand: num_stopped=2
+Bracket: Iter 4.000: -0.21034686267375946 | Iter 2.000: -0.3374544680118561 | Iter 1.000: -0.41555532813072205
+Logical resource usage: 0/20 CPUs, 0/1 GPUs (0.0/1.0 accelerator_type:RTX)
+Current best trial: ed5a9_00000 with val/loss=0.1602104753255844 and parameters={'lightning_config': {'_module_init_config': {'lr': 0.002799278522512412}, '_trainer_init_config': {}, '_trainer_fit_params': {}, '_ddp_strategy_config': {}, '_model_checkpoint_config': {}}}
+Result logdir: /home/garrett/.guild/runs/aca3d6526c03439d8503f4d418d8b9c0/ray_results/mwe
+Number of trials: 2/2 (2 TERMINATED)
++------------------------------+------------+----------------------+------------------------+--------+------------------+--------------+------------+---------+
+| Trial name                   | status     | loc                  |   lightning_config/_mo |   iter |   total time (s) |   train/loss |   val/loss |   epoch |
+|                              |            |                      |    dule_init_config/lr |        |                  |              |            |         |
+|------------------------------+------------+----------------------+------------------------+--------+------------------+--------------+------------+---------|
+| LightningTrainer_ed5a9_00000 | TERMINATED | 192.168.1.206:799019 |             0.00279928 |      5 |          6.48859 |     0.167102 |   0.16021  |       4 |
+| LightningTrainer_ed5a9_00001 | TERMINATED | 192.168.1.206:805068 |             0.00513599 |      1 |          4.79812 |     0.505535 |   0.423087 |       0 |
++------------------------------+------------+----------------------+------------------------+--------+------------------+--------------+------------+---------+
+
+
+2023-07-01 07:36:54,360	INFO tune.py:945 -- Total run time: 14.27 seconds (14.26 seconds for the tuning loop).

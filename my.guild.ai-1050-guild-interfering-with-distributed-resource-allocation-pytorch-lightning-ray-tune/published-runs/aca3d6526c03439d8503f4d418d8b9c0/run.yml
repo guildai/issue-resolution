@@ -1,0 +1,15 @@
+id: aca3d6526c03439d8503f4d418d8b9c0
+operation: mwe
+status: completed
+started: 2023-07-01 12:36:36 UTC
+started_epoch: 1688214996016364
+stopped: 2023-07-01 12:36:57 UTC
+stopped_epoch: 1688215017531294
+time: 0:00:21
+marked: 'no'
+label: okay resources
+command: /home/garrett/Code/guild-issues/my.guild.ai-1050-guild-interfering-with-distributed-resource-allocation-pytorch-lightning-ray-tune/.venv/bin/python
+  -um guild.op_main mwe -- --NUM_DATALOADER_WORKERS 7 --NUM_IN_FEATURES 10 --NUM_TRAINER_CPUS
+  7 --NUM_TRAINER_GPUS 1 --NUM_TRAINER_WORKERS 1 --NUM_TRAIN_SAMPLES 80 --NUM_VAL_SAMPLES
+  20 --SEED 239
+exit_status: 0

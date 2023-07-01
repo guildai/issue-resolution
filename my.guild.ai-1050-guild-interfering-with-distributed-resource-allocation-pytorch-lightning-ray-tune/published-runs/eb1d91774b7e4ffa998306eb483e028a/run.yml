@@ -1,0 +1,15 @@
+id: eb1d91774b7e4ffa998306eb483e028a
+operation: mwe
+status: completed
+started: 2023-07-01 12:31:49 UTC
+started_epoch: 1688214709532087
+stopped: 2023-07-01 12:35:16 UTC
+stopped_epoch: 1688214916558577
+time: 0:03:27
+marked: 'no'
+label: baseline (too high resources)
+command: /home/garrett/Code/guild-issues/my.guild.ai-1050-guild-interfering-with-distributed-resource-allocation-pytorch-lightning-ray-tune/.venv/bin/python
+  -um guild.op_main mwe -- --NUM_DATALOADER_WORKERS 7 --NUM_IN_FEATURES 10 --NUM_TRAINER_CPUS
+  7 --NUM_TRAINER_GPUS 1 --NUM_TRAINER_WORKERS 4 --NUM_TRAIN_SAMPLES 80 --NUM_VAL_SAMPLES
+  20 --SEED 239
+exit_status: 0
