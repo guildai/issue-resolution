@@ -1,0 +1,13 @@
+id: b5e3f4eeb46e4a3b96dde8d3605e97a9
+operation: mwe
+status: completed
+started: 2023-07-03 08:08:19 UTC
+stopped: 2023-07-03 08:09:42 UTC
+time: 0:01:23
+marked: 'no'
+label: NUM_DATALOADER_WORKERS=7 NUM_IN_FEATURES=10 NUM_TRAINER_CPUS=7 NUM_TRAINER_GPUS=1
+  NUM_TRAINER_WORKERS=1 NUM_TRAIN_SAMPLES=8000 NUM_VAL_SAMPLES=20 SEED=239
+command: /home/davina/mambaforge/envs/ap/bin/python -um guild.op_main mwe -- --NUM_DATALOADER_WORKERS
+  7 --NUM_IN_FEATURES 10 --NUM_TRAINER_CPUS 7 --NUM_TRAINER_GPUS 1 --NUM_TRAINER_WORKERS
+  1 --NUM_TRAIN_SAMPLES 8000 --NUM_VAL_SAMPLES 20 --SEED 239
+exit_status: 0
