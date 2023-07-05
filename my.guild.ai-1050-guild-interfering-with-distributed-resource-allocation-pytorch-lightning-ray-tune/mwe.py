@@ -23,14 +23,9 @@ NUM_IN_FEATURES = 10
 
 NUM_DATALOADER_WORKERS = 7
 NUM_TRAINER_WORKERS = 1
-<<<<<<< HEAD
-NUM_TRAINER_CPUS = 7
-NUM_TRAINER_GPUS = 1
-=======
 NUM_TRAINER_CPUS = 3
 NUM_TRAINER_GPUS = 0
 USE_GPU = NUM_TRAINER_GPUS > 0
->>>>>>> d2eee4c (flag-afying values)
 
 class MyLightningModule(LightningModule):
     def __init__(
