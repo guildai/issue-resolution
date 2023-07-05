@@ -155,10 +155,10 @@ if __name__ == "__main__":
             checkpoint_score_order="min",
         ),
     )
-    
+
     scaling_config = ScalingConfig(
         num_workers=NUM_TRAINER_WORKERS,
-        use_gpu=USE_GPU,
+        use_gpu=NUM_TRAINER_GPUS > 0,
         resources_per_worker={
             "CPU": NUM_TRAINER_CPUS,
             "GPU": NUM_TRAINER_GPUS
