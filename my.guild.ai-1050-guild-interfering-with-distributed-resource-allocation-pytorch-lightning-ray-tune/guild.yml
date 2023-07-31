@@ -1,5 +1,4 @@
 mwe:
-  main: mwe
   description: Guild interfering with resource allocation in pytorch-lightning and ray-tune.
   env: # don't save pycache
     PYTHONDONTWRITEBYTECODE: 1
