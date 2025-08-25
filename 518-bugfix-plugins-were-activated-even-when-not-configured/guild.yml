@@ -1,0 +1,3 @@
+train.py:
+  env:
+    GUILD_PLUGINS: python_script
